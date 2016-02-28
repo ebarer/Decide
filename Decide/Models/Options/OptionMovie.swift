@@ -67,16 +67,16 @@ class Movie: Option {
                 if theater.rangeOfString("Scotiabank Theatre Vancouver") != nil{
                     // seperate movie info
                     var movies = theater.componentsSeparatedByString("<div class=movie>")
-                    var theaterinfo = movies.removeAtIndex(0)
+                    let theaterinfo = movies.removeAtIndex(0)
                     for movie in movies{
                         var title = movie.componentsSeparatedByString("<span class=info>")[0]
                         title = (title.componentsSeparatedByString(">")[2]).componentsSeparatedByString("<")[0]
                         print(title)
-                        var info = (movie.componentsSeparatedByString("<span class=info>")[1]).componentsSeparatedByString("<a href")[0]
-                        var length = info.componentsSeparatedByString(" -")[0]
+                        let info = (movie.componentsSeparatedByString("<span class=info>")[1]).componentsSeparatedByString("<a href")[0]
+                        let length = info.componentsSeparatedByString(" -")[0]
                         print(length)
                         if info.rangeOfString("Rated") != nil{
-                            var rated = (info.componentsSeparatedByString("Rated ")[1]).componentsSeparatedByString(" -")[0]
+                            let rated = (info.componentsSeparatedByString("Rated ")[1]).componentsSeparatedByString(" -")[0]
                             print(rated)
                         }
                         var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")

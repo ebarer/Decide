@@ -48,10 +48,10 @@
             </objects>
             <point key="canvasLocation" x="3650.5" y="251"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MainTBC-->
         <scene sceneID="MIz-Xn-7tw">
             <objects>
-                <tabBarController id="4Ui-Q7-wR3" sceneMemberID="viewController">
+                <tabBarController id="4Ui-Q7-wR3" customClass="MainTBC" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="as0-E4-xlE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -10,14 +10,20 @@ import UIKit
 
 class AddPollTVC: UITableViewController, UITextFieldDelegate {
 
-    var pollTitle: String?
+    var newPoll: Poll!
+    
     @IBOutlet var nextButton: UIBarButtonItem!
     @IBOutlet var pollTitleTextField: UITextField!
+    
+    required init?(coder aDecoder: NSCoder) {
+        newPoll = Poll(title: "")
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if pollTitle == nil {
+        if newPoll.title.isEmpty {
             nextButton.enabled = false
         }
     }
@@ -32,7 +38,7 @@ class AddPollTVC: UITableViewController, UITextFieldDelegate {
     
     
     @IBAction func updateTitle(sender: UITextField) {
-        pollTitle = sender.text
+        newPoll.title = sender.text!
         
         if sender.text == nil || sender.text!.isEmpty {
             nextButton.enabled = false
@@ -53,15 +59,13 @@ class AddPollTVC: UITableViewController, UITextFieldDelegate {
     // MARK: - Navigation
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        return (pollTitle == nil) ? false: true
+        return (newPoll.title.isEmpty) ? false: true
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addOptions" {
             if let vc = segue.destinationViewController as? AddPollTVC_Options {
-                if let pollTitle = pollTitle {
-                    vc.newPoll = Poll(title: pollTitle)
-                }
+                vc.newPoll = newPoll
             }
         }
     }
