@@ -15,9 +15,10 @@ class LoginController < ApplicationController
 
   def create 
     if !User.exists?(fb_id: params[:fb_id])
-      @newUser = User.new(params.permit(:first_name, :last_name, :email, :fb_id, :profile_picture))
-      @newUser.save
-      render json: @newUser
+      @user = User.new(params.permit(:first_name, :last_name, :email, :fb_id, :profile_picture))
+      @user.save
+      render :json => {:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :fb_id => @user.fb_id, :profile_picture => @user.profile_picture,
+          :polls => @user.polls}
     end
   end
 end
