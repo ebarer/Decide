@@ -10,9 +10,12 @@ import UIKit
 import Accounts
 import FBSDKCoreKit
 import FBSDKLoginKit
+import CoreLocation
 
-class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
+class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDelegate {
 
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -87,5 +90,8 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(segue.destinationViewController)
     }
+ 
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
 
+    }
 }
