@@ -19,9 +19,12 @@ class DatabaseTransportManager: NSObject {
             request.HTTPMethod = "POST"
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             
+            let theJSONText = NSString(data: request.HTTPBody!,encoding: NSASCIIStringEncoding)
+            print("JSON string = \(theJSONText!)")
+            
             NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
                 do {
-                    print(response)
+                    //print(response)
                     
                     if let data = data {
                         let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves)
@@ -32,7 +35,7 @@ class DatabaseTransportManager: NSObject {
                             return (true, json)
                         })
                     }
-                } catch let error as HTMLError {
+                } catch let error as DTMError {
                     print(error.rawValue)
                 } catch {
                     print(error)

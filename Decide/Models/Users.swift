@@ -8,15 +8,16 @@
 
 import UIKit
 
-class User:NSObject {
+class User: NSObject {
+    
     var pk_uid: Int?
     var firstName: String
     var lastName: String
     var email: String
-    var fb_id: Double
+    var fb_id: String
     var profilePicture: NSURL?
     
-    init(withFirstName firstName: String, lastName: String, email: String, fb_id: Double) {
+    init(withFirstName firstName: String, lastName: String, email: String, fb_id: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
@@ -27,7 +28,7 @@ class User:NSObject {
         let manager = DatabaseTransportManager()
         let object = self.toDict()
         
-        let request = manager.postRequest(withParams: object, urlString: "https://boiling-caverns-94333.herokuapp.com/login/create")
+        let request = manager.postRequest(withParams: object, urlString: "https://dwfnwhacks2016.herokuapp.com/login/create")
         if request.success {
             self.pk_uid = request.response?.valueForKey("pk_uid") as? Int
             defaults.setValue(self.pk_uid, forKey: "pk_uid")
@@ -44,7 +45,7 @@ class User:NSObject {
         // Backend sends JSON
         
         // Create User
-        return User(withFirstName: "Elliot", lastName: "Barer", email: "ebarer@mac.com", fb_id: 1001)
+        return User(withFirstName: "Elliot", lastName: "Barer", email: "ebarer@mac.com", fb_id: String(1001))
     }
     
     func toDict() -> [String: String] {

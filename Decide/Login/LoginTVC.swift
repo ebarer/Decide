@@ -10,9 +10,12 @@ import UIKit
 import Accounts
 import FBSDKCoreKit
 import FBSDKLoginKit
+import CoreLocation
 
-class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
+class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDelegate {
 
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,7 +29,7 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
             loginButton.center = self.view.center
             self.view.addSubview(loginButton)
         }
-        
+
 //        if let _ = FBSDKAccessToken.currentAccessToken() {
 //            getProfile()
 //            self.performSegueWithIdentifier("loggedIn", sender: nil)
@@ -65,21 +68,28 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
         let request = FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields": "email"])
         request.startWithCompletionHandler({ (connection, result, error) in
             if let email = result.valueForKey("email") as? String {
-                if let fbID = result.valueForKey("id") as? Double {
+                if let fbID = result.valueForKey("id") as? String {
                     let profile = FBSDKProfile.currentProfile()
                     let user = User(withFirstName: profile.firstName, lastName: profile.lastName, email: email, fb_id: fbID)
                     
                     if user.saveUser() {
                         print("\(FBSDKProfile.currentProfile().firstName) logged in!")
                         self.performSegueWithIdentifier("loggedIn", sender: nil)
+                        
+                        
                     }
                 }
             }
+            
+            self.performSegueWithIdentifier("loggedIn", sender: nil)
         })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(segue.destinationViewController)
     }
+ 
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
 
+    }
 }

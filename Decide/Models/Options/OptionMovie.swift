@@ -10,24 +10,91 @@ import Foundation
 import MapKit
 
 class Movie: Option {
-    var rating: Float?
-    var length: NSTimeInterval?
-    var genre: MovieGenre?
+
+    var imdbRating: Float?
+    var length: String?
+    var genre: String?
     var times: [NSDate]?
     var location: String?
-    
-    convenience init(withUID uid: Int, fk_uid: Int, title: String, rating: Float, length: Double, genre: MovieGenre, times: [NSDate], location: String) {
-        self.init(withUID: uid, fk_uid: fk_uid, title: title)
+    var plot: String?
+    var poster: String?
+    var movieRating: String?
+
+    convenience init(title: String, imdbRating: Float, length: String, genre: String, times: [NSDate],
+                     location: String, plot: String, poster: String, movieRating: String) {
+        self.init(title: title)
         
-        self.rating = rating
-        self.length = NSTimeInterval(length)
+        self.imdbRating = imdbRating
+        self.length = length
         self.genre = genre
         self.times = times
         self.location = location
+        self.plot = plot
+        self.poster = poster
+        self.movieRating = movieRating
+    }
+    
+    func scrapeMoviesNearMe() {
+        // q = query (search, ie for movie)
+        // lat = latitude
+        // long = longitude
+
+        let lat = 49.5
+        let long = 123.2
+        
+        let html: String?
+        do {
+            html = try String(contentsOfURL: NSURL(string: "http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))!, encoding: NSASCIIStringEncoding)
+        } catch _ {
+            html = nil
+        }
+        print(html)
+        print("http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))
+        
+        // NOW PARSE IT
+        var html_parse = html!.componentsSeparatedByString("<div class=theater>")
+        html_parse.removeAtIndex(0) // doesnt have movie info
+        for theater in html_parse{
+            if theater.rangeOfString("<span class=closure>") != nil {
+                // theater hase no showtimes. remove from array
+                html_parse.removeObject(theater)
+            }
+            else{
+                // Retrieve Theater Name
+                //PASS
+                
+                //For temp, find Scotiabank Theatre Vancouver
+                if theater.rangeOfString("Scotiabank Theatre Vancouver") != nil{
+                    // seperate movie info
+                    var movies = theater.componentsSeparatedByString("<div class=movie>")
+                    let theaterinfo = movies.removeAtIndex(0)
+                    for movie in movies{
+                        var title = movie.componentsSeparatedByString("<span class=info>")[0]
+                        title = (title.componentsSeparatedByString(">")[2]).componentsSeparatedByString("<")[0]
+                        print(title)
+                        let info = (movie.componentsSeparatedByString("<span class=info>")[1]).componentsSeparatedByString("<a href")[0]
+                        let length = info.componentsSeparatedByString(" -")[0]
+                        print(length)
+                        if info.rangeOfString("Rated") != nil{
+                            let rated = (info.componentsSeparatedByString("Rated ")[1]).componentsSeparatedByString(" -")[0]
+                            print(rated)
+                        }
+                        var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
+                        times.removeAtIndex(0)
+                        var timearray: [String] = []
+                        for time in times{
+                            timearray.append(time.componentsSeparatedByString("</span>")[0])
+                            print(time.componentsSeparatedByString("</span>")[0])
+                        }
+                    }
+                }
+            }
+        }
+        
     }
     
     func getMovieInfo() {
-        // URL Parameters:
+        // omdb URL Parameters:
         // i = imdb id
         // t = movie title
         // type = {movie, series, episode} type of result
@@ -37,50 +104,30 @@ class Movie: Option {
         // tomatoes = {true, false} bool to return rotten tomatoes ratings
         // callback = JSONP callback name
         // v = API version
-        let url: NSURL = NSURL(string: "http://www.omdbapi.com/?t=")!
-        let request = NSMutableURLRequest(URL: url)
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
-            do {
-                guard let data = data else { throw HTMLError.NoData }
-                guard let returnString = String(data: data, encoding: NSASCIIStringEncoding) else { throw HTMLError.ConversionFailed }
-                let returnArray = returnString.characters.split{$0 == ","}.map(String.init)
-                
-                if returnArray.count > 1 {
-                    // Update Movie values here
-                    // self.rating, etc..
-                } else {
-                    throw HTMLError.ExchangeRateMissing
+        //let url: NSURL = NSURL(string: "http://www.omdbapi.com/?t=" + self.title + "&type=movie&plot=short&r=json&tomatoes=true")!
+        //let request = NSMutableURLRequest(URL: url)
+        
+        let url = NSURL(string: "http://www.omdbapi.com/?t=" + self.title + "&type=movie&plot=short&r=json&tomatoes=true")!
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+            if let data = data {
+                //print(NSString(data: data, encoding: NSUTF8StringEncoding))
+                do {
+                    let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options:[])
+                    //print("Array: \(jsonArray)")
+                    self.imdbRating = Float(jsonArray["imdbRating"] as! String)
+                    self.length = (jsonArray["Runtime"] as! String)
+                    self.genre = (jsonArray["Plot"] as! String)
+                    self.plot = (jsonArray["Plot"] as! String)
+                    self.poster = (jsonArray["Poster"] as! String)
+                } catch {
+                    print("Error: \(error)")
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    NSNotificationCenter.defaultCenter().postNotificationName("updateExchange", object: nil)
-                })
-            } catch let error as HTMLError {
-                print(error.rawValue)
-            } catch {
-                print(error)
+            } else {
+                print("\(response) - \(error)")
             }
-            }.resume()
-    }
-}
-
-// MARK: - MovieGenre Enum
-enum MovieGenre {
-    case Action
-    case Comedy
-    case Horror
-    
-    var description: String {
-        switch self {
-        case .Action: return "Action"
-        case .Comedy: return "Comedy"
-        case .Horror: return "Horror"
         }
+        
+        task.resume()
     }
-}
-
-enum HTMLError: String, ErrorType {
-    case NoData = "-E- No data"
-    case ConversionFailed = "-E- Conversion from JSON failed"
-    case ExchangeRateMissing = "-E- No exchange rate"
 }
