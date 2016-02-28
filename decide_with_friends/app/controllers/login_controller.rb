@@ -26,8 +26,7 @@ class LoginController < ApplicationController
       render :json => {:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :fb_id => @user.fb_id, :profile_picture => @user.profile_picture,
           :polls => @user.polls}
     else
-      render :json => {:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :fb_id => @user.fb_id, :profile_picture => @user.profile_picture,
-          :polls => @user.polls}
+      render :json => '{"Status" : "101", "Error_msg" : "User already exists"}'
     end
   end
 end
