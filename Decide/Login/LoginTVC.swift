@@ -34,16 +34,17 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDel
         // Set up location services
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         
+        //Keep this optional check, optional will have nil at first call otherwise and will throw error
+        if let latitude = locationManager.location?.coordinate.latitude {
+            let test = Poll(withUID: 1002,  title: "Alivepool", optionIds: [1,2,3], winningOptionId: 1003, theme: PollType.Movie, latitude: latitude, longitude: locationManager.location!.coordinate.longitude)
         
-        //scratch
-        //let test = Movie(withUID: 1002, fk_uid: 1004, title: "Alivepool")
+            test.populateNearbyMovies()
+        }
         
-        //test.requestLocation()
-        //endscratch
-        
-        
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,11 +75,8 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(segue.destinationViewController)
     }
+ 
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
 
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
-            // do stuff
-            print("Hello")
-        }
     }
 }

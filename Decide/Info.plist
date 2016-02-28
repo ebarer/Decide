@@ -63,6 +63,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Do you give Decide permission to use your location to find movies playing nearby?</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Always allow Decide to find movies playing nearby?</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
