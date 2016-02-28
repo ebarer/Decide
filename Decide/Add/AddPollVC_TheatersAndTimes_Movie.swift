@@ -12,6 +12,8 @@ class AddPollTVC_TheatersAndTimes_Movie: UITableViewController, UITextFieldDeleg
     
     var movie: Movie?
     
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    
     //@IBOutlet weak var pollTitle: UILabel!
     
     
@@ -21,10 +23,7 @@ class AddPollTVC_TheatersAndTimes_Movie: UITableViewController, UITextFieldDeleg
         //pollTitle.text = movie?.title
         super.viewDidLoad()
         
-        //let cell = tableView.
-        
-        
-        //cell.textLabel?.text = newPoll.movieOptions[indexPath.row].title
+        movieTitleLabel.text = movie?.title
     }
     
     

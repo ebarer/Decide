@@ -22,10 +22,6 @@ class AddPollTVC_Movie: UITableViewController, UITextFieldDelegate, CLLocationMa
         super.init(coder: aDecoder)
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,12 +33,12 @@ class AddPollTVC_Movie: UITableViewController, UITextFieldDelegate, CLLocationMa
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
-        //Keep this optional check, optional will have nil at first call otherwise and will throw error
-        if let latitude = locationManager.location?.coordinate.latitude {
-            //send lat and long to a movie poll
-            newPoll.latitude = latitude
-            newPoll.longitude = (locationManager.location?.coordinate.longitude)!
-        }
+//        //Keep this optional check, optional will have nil at first call otherwise and will throw error
+//        if let latitude = locationManager.location?.coordinate.latitude {
+//            //send lat and long to a movie poll
+//            newPoll.latitude = latitude
+//            newPoll.longitude = (locationManager.location?.coordinate.longitude)!
+//        }
         
     }
     
@@ -73,6 +69,16 @@ class AddPollTVC_Movie: UITableViewController, UITextFieldDelegate, CLLocationMa
         return true
     }
     
+    // MARK: - Location
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+
+        newPoll.latitude = (locationManager.location!.coordinate.latitude)
+        newPoll.longitude = (locationManager.location!.coordinate.longitude)
+        print("CLthing")
+        print(locationManager.location!.coordinate.latitude)
+        print(locationManager.location!.coordinate.longitude)
+        print("endclthing")
+    }
     
     // MARK: - Navigation
     

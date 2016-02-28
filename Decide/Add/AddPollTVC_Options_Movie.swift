@@ -24,7 +24,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
             nextButton.enabled = false
         }
         
-        scrapeMoviesNearMe()
+        scrapeMoviesNearMe(newPoll.latitude, longitude: newPoll.longitude)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,19 +40,24 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
     }
     
     // Google Scrape Method
-    func scrapeMoviesNearMe() {
+    func scrapeMoviesNearMe(latitude: Double, longitude: Double) {
         // lat = latitude
         // long = longitude
         
-        let lat = 49.5
-        let long = 123.2
+        let lat = latitude
+        let long = longitude
+        
+        print(lat)
+        print(long)
         
         let html: String?
         do {
-            html = try String(contentsOfURL: NSURL(string: "http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))!, encoding: NSASCIIStringEncoding)
+            html = try String(contentsOfURL: NSURL(string: "http://www.google.com/movies?near=" + String(lat) + "%2C" + String(long))!, encoding: NSASCIIStringEncoding)
         } catch _ {
             html = nil
         }
+        //print(html)
+        print("http://www.google.com/movies?near=" + String(lat) + "%2C" + String(long))
         
         // NOW PARSE IT
         var html_parse = html!.componentsSeparatedByString("<div class=theater>")
