@@ -19,7 +19,7 @@ class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
         self.tableView.editing = true
         
         if newPoll.options.count > 1 {
-            nextButton.enabled = false
+            nextButton.enabled = true
         } else {
             nextButton.enabled = false
         }

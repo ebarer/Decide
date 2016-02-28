@@ -19,8 +19,6 @@ class MainPollsTVC: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         if let index = tableView.indexPathForSelectedRow {
-            // tableView.reloadData()
-            // tableView.selectRowAtIndexPath(index, animated: true, scrollPosition: .None)
             tableView.deselectRowAtIndexPath(index, animated: animated)
         }
 
@@ -66,6 +64,16 @@ class MainPollsTVC: UITableViewController {
 
         return cell
     }
+    
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("Selecting \(polls[indexPath.row])")
+        // #DEBUG
+        currentUser?.toDict()
+        polls[indexPath.row].toDict()
+    }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         let poll = polls[indexPath.row]
@@ -86,8 +94,6 @@ class MainPollsTVC: UITableViewController {
         }
     }
 
-
-    // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
     }
@@ -96,7 +102,13 @@ class MainPollsTVC: UITableViewController {
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(segue.destinationViewController)
+        if segue.identifier == "viewPollDetails" {
+            if let vc = segue.destinationViewController as? PollDetailsTVC {
+                if let index = self.tableView.indexPathForCell(sender as! UITableViewCell) {
+                    vc.poll = polls[index.row]
+                }
+            }
+        }
     }
 
 }

@@ -12,7 +12,7 @@ import CoreLocation
 class Poll: NSObject {
     
     var pk_uid: Int?
-    var title: String
+    var title: String?
     var isEnded: Bool = false
     var options = [Option]()
     
@@ -35,8 +35,60 @@ class Poll: NSObject {
         return nil
     }
     
-    init(title: String) {
+    convenience init(title: String) {
+        self.init()
         self.title = title
+    }
+    
+    func savePoll() -> Bool {
+        let manager = DatabaseTransportManager()
+        let object = self.toDict()
+        
+        let request = manager.postRequest(withParams: object, urlString: "poll/create")
+        if request.success {
+            self.pk_uid = request.response?.valueForKey("pk_uid") as? Int
+            return true
+        }
+        
+        return false
+    }
+    
+    func toDict() -> [String: String] {
+        var dict:[String: String] = ["isEnded": String(isEnded)]
+        
+        if let title = title {
+            dict["title"] = title
+        }
+
+        // Add admin
+        if let uid = currentUser?.pk_uid {
+            dict["admin"] = String(uid)
+        }
+        
+        // Add users
+        var usersUID = [String]()
+        for user in users {
+            if let uid = user.pk_uid {
+                usersUID.append("{\"id\": \(String(uid))}")
+            }
+        }
+        
+        if usersUID.count > 0 {
+            dict["users"] = "[\(usersUID.joinWithSeparator(","))]"
+        }
+        
+        // Add options
+        var optionDicts = [String]()
+        
+        for option in options {
+            optionDicts.append(String(option.toDict()))
+        }
+        
+        if optionDicts.count > 0 {
+            dict["options"] = "[\(optionDicts.joinWithSeparator(","))]"
+        }
+
+        return dict
     }
     
     func closePoll() {

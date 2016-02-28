@@ -35,6 +35,7 @@
 		CEB049D01C82896500AD0D55 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB049CD1C82896500AD0D55 /* FBSDKShareKit.framework */; };
 		CEB049D41C82897D00AD0D55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB049D21C82897D00AD0D55 /* Main.storyboard */; };
 		CEEA03B21C831FFC006D904B /* MainPollsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA03B11C831FFC006D904B /* MainPollsTVC.swift */; };
+		CEEA03B41C834599006D904B /* PollDetailsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA03B31C834599006D904B /* PollDetailsTVC.swift */; };
 		CEFBA8B41C82F12F00562664 /* AddPollTVC_Options_AddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBA8B31C82F12F00562664 /* AddPollTVC_Options_AddCell.swift */; };
 		CEFBA8B81C82F48D00562664 /* AddPollTVC_InviteFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBA8B71C82F48D00562664 /* AddPollTVC_InviteFriends.swift */; };
 		CEFBA8BA1C82F6EB00562664 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBA8B91C82F6EB00562664 /* MainTBC.swift */; };
@@ -72,6 +73,7 @@
 		CEB049CD1C82896500AD0D55 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Decide/Frameworks/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		CEB049D31C82897D00AD0D55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEEA03B11C831FFC006D904B /* MainPollsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainPollsTVC.swift; path = Main/MainPollsTVC.swift; sourceTree = "<group>"; };
+		CEEA03B31C834599006D904B /* PollDetailsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollDetailsTVC.swift; path = Main/PollDetailsTVC.swift; sourceTree = "<group>"; };
 		CEFBA8B31C82F12F00562664 /* AddPollTVC_Options_AddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_Options_AddCell.swift; path = Add/AddPollTVC_Options_AddCell.swift; sourceTree = "<group>"; };
 		CEFBA8B71C82F48D00562664 /* AddPollTVC_InviteFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_InviteFriends.swift; path = Add/AddPollTVC_InviteFriends.swift; sourceTree = "<group>"; };
 		CEFBA8B91C82F6EB00562664 /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTBC.swift; path = Main/MainTBC.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				CEB049C81C82894600AD0D55 /* LoginTVC.swift */,
 				CEFBA8B91C82F6EB00562664 /* MainTBC.swift */,
 				CEEA03B11C831FFC006D904B /* MainPollsTVC.swift */,
+				CEEA03B31C834599006D904B /* PollDetailsTVC.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */,
 				CEB049C91C82894600AD0D55 /* LoginTVC.swift in Sources */,
 				CE64F2DF1C82E7280004A5F8 /* AddPollTVC.swift in Sources */,
+				CEEA03B41C834599006D904B /* PollDetailsTVC.swift in Sources */,
 				CEB049C31C8288F700AD0D55 /* OptionRestaurant.swift in Sources */,
 				CEFBA8BA1C82F6EB00562664 /* MainTBC.swift in Sources */,
 				CEB049BD1C8288ED00AD0D55 /* Option.swift in Sources */,

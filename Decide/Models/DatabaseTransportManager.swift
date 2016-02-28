@@ -12,7 +12,7 @@ class DatabaseTransportManager: NSObject {
 
     func postRequest(withParams params: [String: String], urlString: String) -> (success: Bool, response: NSData?) {
         do {
-            let url: NSURL = NSURL(string: urlString)!
+            let url: NSURL = NSURL(string: "https://dwfnwhacks2016.herokuapp.com/\(urlString)")!
             let request = NSMutableURLRequest(URL: url)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -24,8 +24,6 @@ class DatabaseTransportManager: NSObject {
             
             NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
                 do {
-                    //print(response)
-                    
                     if let data = data {
                         let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves)
                         print(json)
