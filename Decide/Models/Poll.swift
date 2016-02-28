@@ -7,17 +7,15 @@
 //
 
 import UIKit
-import CoreLocation
 
 class Poll: NSObject {
     
     var pk_uid: Int?
     var title: String?
     var isEnded: Bool = false
-    var options = [Option]()
-    
     var admin:User?
     var users = [User]()
+    var options = [Option]()
     
     var winningOption: Option? {
         if options.count > 0 {
@@ -40,17 +38,13 @@ class Poll: NSObject {
         self.title = title
     }
     
-    func savePoll() -> Bool {
-        let manager = DatabaseTransportManager()
-        let object = self.toDict()
-        
-        let request = manager.postRequest(withParams: object, urlString: "poll/create")
-        if request.success {
-            self.pk_uid = request.response?.valueForKey("pk_uid") as? Int
-            return true
+    func savePoll() {
+        DatabaseTransportManager().postRequest(withParams: self.toDict(), urlString: "poll/create") { (response) in
+            print(response)
+            if let id = response?.valueForKey("id") as? Int {
+                self.pk_uid = id
+            }
         }
-        
-        return false
     }
     
     func toDict() -> [String: String] {
@@ -68,9 +62,7 @@ class Poll: NSObject {
         // Add users
         var usersUID = [String]()
         for user in users {
-            if let uid = user.pk_uid {
-                usersUID.append("{\"id\": \(String(uid))}")
-            }
+            usersUID.append("{\"id\": \(user.fb_id)}")
         }
         
         if usersUID.count > 0 {
@@ -98,9 +90,8 @@ class Poll: NSObject {
         return dict
     }
     
-    func closePoll() {
-        self.isEnded = true
-    }
+    
+    // MARK: - Behaviours
     
     func addOption(newOption: Option) {
         self.options.append(newOption)
@@ -108,6 +99,10 @@ class Poll: NSObject {
     
     func removeOption(option: Option) {
         self.options.removeObject(option)
+    }
+    
+    func closePoll() {
+        self.isEnded = true
     }
 
 }

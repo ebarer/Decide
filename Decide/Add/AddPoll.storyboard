@@ -24,19 +24,20 @@
             </objects>
             <point key="canvasLocation" x="146" y="1"/>
         </scene>
-        <!--Decision Type-->
+        <!--Choose a Type-->
         <scene sceneID="mjV-NK-laN">
             <objects>
                 <tableViewController id="Emf-y5-GWu" customClass="PollTypeTVC" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="DtU-J5-joJ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="18" sectionFooterHeight="18" id="DtU-J5-joJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="Yvr-BZ-KwC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="3Ou-Wi-4fm" style="IBUITableViewCellStyleDefault" id="ZZp-SB-nen">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="99" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZZp-SB-nen" id="OsH-oQ-Pbu">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
@@ -56,7 +57,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="5qI-kO-S1h" style="IBUITableViewCellStyleDefault" id="wTj-nI-bCh">
-                                        <rect key="frame" x="0.0" y="164" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="199" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wTj-nI-bCh" id="M9j-cf-B2x">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
@@ -73,7 +74,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ZKD-nM-lWJ" style="IBUITableViewCellStyleDefault" id="3MI-J3-Vfd">
-                                        <rect key="frame" x="0.0" y="264" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="299" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3MI-J3-Vfd" id="iAL-Df-ClI">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
@@ -97,7 +98,7 @@
                             <outlet property="delegate" destination="Emf-y5-GWu" id="hNQ-cs-7Bl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Decision Type" id="cgq-n4-x0G">
+                    <navigationItem key="navigationItem" title="Choose a Type" prompt="With what do you need help deciding?" id="cgq-n4-x0G">
                         <barButtonItem key="backBarButtonItem" title="Types" id="70U-vf-5k5"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4Cf-H6-xK1">
                             <connections>
@@ -128,7 +129,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End Farzin?" placeholder="What are you deciding?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="apS-Jd-kF5">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Will we finish on time?" placeholder="What are you deciding?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="apS-Jd-kF5">
                                                     <rect key="frame" x="15" y="18" width="570" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done"/>

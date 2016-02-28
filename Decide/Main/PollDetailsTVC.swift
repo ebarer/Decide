@@ -16,7 +16,6 @@ class PollDetailsTVC: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // Select options
         self.tableView.editing = true
@@ -31,6 +30,10 @@ class PollDetailsTVC: UITableViewController, UITextFieldDelegate {
                 }
             }
         }
+        
+        // Remove tableview gap
+        tableView.tableHeaderView = UIView(frame: CGRectMake(0.0, 0.0, tableView.bounds.size.width, 0.01))
+        
         print(poll.toDict())
     }
     
@@ -62,29 +65,37 @@ class PollDetailsTVC: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let identifier = (indexPath.section == 0) ? "titleCell" : "optionCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
-        
         switch((indexPath.section, indexPath.row)) {
         case (0,0):                 // Title cell
+            let identifier = "titleCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
             cell.textLabel?.text = poll.title
+            return cell
         case (1, _):                // Option cells
+            let identifier = "optionCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! PollOptionCell
             let option = poll.options[indexPath.row]
-            cell.textLabel?.text = option.title
+            
+            cell.pollTitleLabel.text = option.title
             updateCellDetails(cell, option: option)
-        default: break
+            
+            return cell
+        default:
+            let identifier = "otherCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+            return cell
         }
-        
-        return cell
     }
     
-    func updateCellDetails(cell: UITableViewCell, option: Option) {
+    func updateCellDetails(cell: PollOptionCell, option: Option) {
         let count = option.votes.count
         
+        cell.pollCountLabel.text = String(count)
+        
         if count == 0 {
-            cell.detailTextLabel?.text = "No votes"
+            cell.pollSubtitleLabel?.text = "No votes"
         } else {
-            cell.detailTextLabel?.text = "\(option.votes.count) votes: \(returnObjectNames(option).joinWithSeparator(", "))"
+            cell.pollSubtitleLabel?.text = returnObjectNames(option).joinWithSeparator(", ")
         }
         
         if let user = currentUser {
@@ -105,7 +116,7 @@ class PollDetailsTVC: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? PollOptionCell {
             if let user = currentUser {
                 let option = poll.options[indexPath.row]
                 option.voteFor(withVoter: user)
@@ -115,7 +126,7 @@ class PollDetailsTVC: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? PollOptionCell {
             if let user = currentUser {
                 let option = poll.options[indexPath.row]
                 option.unvoteFor(withVoter: user)

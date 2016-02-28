@@ -26,7 +26,7 @@ class AddPollTVC: UITableViewController, UITextFieldDelegate {
         // #DEBUG
         if let text = pollTitleTextField.text {
             newPoll.title = text
-            newPoll.options = [Option(title: "Test1"), Option(title: "Test2")]
+            newPoll.options = [Option(title: "Yes"), Option(title: "Farzin")]
         }
         
         if let title = newPoll.title where !title.isEmpty {

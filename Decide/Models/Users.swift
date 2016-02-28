@@ -25,22 +25,39 @@ class User: NSObject {
         self.fb_id = fb_id
     }
     
-    func saveUser() -> Bool {
-        let manager = DatabaseTransportManager()
-        let object = self.toDict()
-        
-        let request = manager.postRequest(withParams: object, urlString: "login/create")
-        if request.success {
-            self.pk_uid = request.response?.valueForKey("pk_uid") as? Int
-            defaults.setValue(self.pk_uid, forKey: "pk_uid")
-            defaults.synchronize()
-            return true
+    class func getUser(pk_uid: Int) {
+        let object = ["pk_uid" : String(pk_uid)]
+        DatabaseTransportManager().postRequest(withParams: object, urlString: "login/index") { (response) in
+            print(response)
+            if let response = response {
+                if let _ = response.valueForKey("Error") {
+                    // #DEBUG
+                    defaults.setValue(nil, forKey: "pk_uid")
+                    fatalError("Bad account")
+                } else {
+                    let firstName = response.valueForKey("first_name") as! String
+                    let lastName = response.valueForKey("last_name") as! String
+                    let email = response.valueForKey("email") as! String
+                    let fbID = response.valueForKey("fb_id") as! Int
+                    
+                    currentUser = User(withFirstName: firstName, lastName: lastName, email: email, fb_id: String(fbID))
+                    currentUser?.pk_uid = pk_uid
+                }
+            }
         }
-    
-        return false
     }
     
-    // Send data, retrieve pk_uid
+    func saveUser() {
+        DatabaseTransportManager().postRequest(withParams: self.toDict(), urlString: "login/create") { (response) in
+            print(response)
+            if let id = response?.valueForKey("id") as? Int {
+                self.pk_uid = id
+                defaults.setValue(id, forKey: "pk_uid")
+                defaults.synchronize()
+            }
+        }
+    }
+    
     func toDict() -> [String: String] {
         var dict = ["first_name": firstName, "last_name": lastName, "fb_id": fb_id]
         
@@ -66,19 +83,8 @@ class User: NSObject {
         return dict
     }
     
-    // Send pk_uid, retrieve data
-//    class func getUser(pk_uid: Int) -> User {
-//        
-//    }
-    
     func getFriends() -> [User]? {
         return nil
     }
     
-}
-
-class Elliot: User {
-    override func saveUser() -> Bool {
-        return false
-    }
 }

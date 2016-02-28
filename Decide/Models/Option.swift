@@ -19,6 +19,14 @@ class Option: NSObject {
         self.title = title
     }
     
+    func toDict() -> [String: String] {
+        let dict:[String: String] = ["title": title]
+        return dict
+    }
+    
+    
+    // MARK: - Behaviours
+    
     func voteFor(withVoter voter: User) {
         if votes.users.contains(voter) == false {
             votes.count += 1
@@ -27,15 +35,10 @@ class Option: NSObject {
     }
     
     func unvoteFor(withVoter voter: User) {
-        if votes.users.contains(voter) == false {
-            votes.count += 1
+        if votes.users.contains(voter) == true {
+            votes.count -= 1
             votes.users.removeObject(voter)
         }
-    }
-    
-    func toDict() -> [String: String] {
-        let dict:[String: String] = ["title": title]
-        return dict
     }
 
 }

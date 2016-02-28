@@ -10,7 +10,7 @@ import Foundation
 
 class DatabaseTransportManager: NSObject {
 
-    func postRequest(withParams params: [String: String], urlString: String) -> (success: Bool, response: NSData?) {
+    func postRequest(withParams params: [String: String], urlString: String, handler:(response: AnyObject?) -> Void) {
         do {
             let url: NSURL = NSURL(string: "https://dwfnwhacks2016.herokuapp.com/\(urlString)")!
             let request = NSMutableURLRequest(URL: url)
@@ -24,16 +24,13 @@ class DatabaseTransportManager: NSObject {
             
             NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
                 do {
-                    if let data = data {
-                        print("Data Input: \(data)")
-                        
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves)
-                        print("JSON Input: \(json)")
-                        
-                        dispatch_async(dispatch_get_main_queue(), {
-//                            NSNotificationCenter.defaultCenter().postNotificationName("updateExchange", object: nil)
-                            return (true, json)
-                        })
+                    if error == nil {
+                        if let data = data {
+                            let responseJSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves)
+                            handler(response: responseJSON)
+                        }
+                    } else {
+                        handler(response: nil)
                     }
                 } catch let error as DTMError {
                     print(error.rawValue)
@@ -44,8 +41,6 @@ class DatabaseTransportManager: NSObject {
         } catch {
             print(error)
         }
-        
-        return (false, nil)
     }
 }
 

@@ -65,22 +65,33 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDel
     // MARK: - Navigation
 
     func proceedToApp() {
-        let request = FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields": "email"])
-        request.startWithCompletionHandler({ (connection, result, error) in
-            if let email = result.valueForKey("email") as? String {
-                if let fbID = result.valueForKey("id") as? String {
-                    let profile = FBSDKProfile.currentProfile()
-                    currentUser = User(withFirstName: profile.firstName, lastName: profile.lastName, email: email, fb_id: fbID)
-                    
-                    if currentUser!.saveUser() {
-                        print("\(FBSDKProfile.currentProfile().firstName) logged in!")
+        if let pk_uid = defaults.valueForKey("pk_uid") {
+            User.getUser(pk_uid as! Int)
+            
+            if let user = currentUser {
+                print("Current User: \(user.firstName)")
+            }
+            
+            print("Facebook: \(FBSDKProfile.currentProfile().firstName)")
+            
+            self.performSegueWithIdentifier("loggedIn", sender: nil)
+        } else {
+            let request = FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields": "email"])
+            request.startWithCompletionHandler({ (connection, result, error) in
+                if let email = result.valueForKey("email") as? String {
+                    if let fbID = result.valueForKey("id") as? String {
+                        let profile = FBSDKProfile.currentProfile()
+                        print("Facebook: \(profile.firstName)")
+                        
+                        currentUser = User(withFirstName: profile.firstName, lastName: profile.lastName, email: email, fb_id: fbID)
+                        currentUser?.saveUser()
+                        print("Current User: \(currentUser!.firstName)")
+                        
                         self.performSegueWithIdentifier("loggedIn", sender: nil)
                     }
                 }
-            }
-            
-            self.performSegueWithIdentifier("loggedIn", sender: nil)
-        })
+            })
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
