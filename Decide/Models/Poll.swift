@@ -81,7 +81,14 @@ class Poll: NSObject {
         var optionDicts = [String]()
         
         for option in options {
-            optionDicts.append(String(option.toDict()))
+            do {
+                let json = try NSJSONSerialization.dataWithJSONObject(option.toDict(), options: [])
+                let jsonString = NSString(data: json, encoding: NSASCIIStringEncoding)!
+                optionDicts.append(String(jsonString))
+            } catch {
+                print("Issue serializing poll: \(self.title)")
+                continue
+            }
         }
         
         if optionDicts.count > 0 {
@@ -103,4 +110,20 @@ class Poll: NSObject {
         self.options.removeObject(option)
     }
 
+}
+
+func returnObjectNames(object: AnyObject) -> [String] {
+    var names = [String]()
+    
+    if object.isKindOfClass(Poll) {
+        for user in (object as! Poll).users {
+            names.append(user.firstName)
+        }
+    } else if object.isKindOfClass(Option) {
+        for user in (object as! Option).votes.users {
+            names.append(user.firstName)
+        }
+    }
+    
+    return names
 }

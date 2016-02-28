@@ -19,14 +19,16 @@ class DatabaseTransportManager: NSObject {
             request.HTTPMethod = "POST"
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
             
-            let theJSONText = NSString(data: request.HTTPBody!,encoding: NSASCIIStringEncoding)
-            print("JSON string = \(theJSONText!)")
+            let theJSONText = NSString(data: request.HTTPBody!, encoding: NSASCIIStringEncoding)
+            print("JSON Output: \(theJSONText!)")
             
             NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
                 do {
                     if let data = data {
+                        print("Data Input: \(data)")
+                        
                         let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves)
-                        print(json)
+                        print("JSON Input: \(json)")
                         
                         dispatch_async(dispatch_get_main_queue(), {
 //                            NSNotificationCenter.defaultCenter().postNotificationName("updateExchange", object: nil)

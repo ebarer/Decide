@@ -20,17 +20,21 @@ class Option: NSObject {
     }
     
     func voteFor(withVoter voter: User) {
-        votes.count += 1
-        votes.users.append(voter)
+        if votes.users.contains(voter) == false {
+            votes.count += 1
+            votes.users.append(voter)
+        }
     }
     
     func unvoteFor(withVoter voter: User) {
-        votes.count -= 1
-        votes.users.removeObject(voter)
+        if votes.users.contains(voter) == false {
+            votes.count += 1
+            votes.users.removeObject(voter)
+        }
     }
     
     func toDict() -> [String: String] {
-        var dict:[String: String] = ["title": title]
+        let dict:[String: String] = ["title": title]
         return dict
     }
 

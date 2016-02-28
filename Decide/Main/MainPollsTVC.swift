@@ -51,10 +51,7 @@ class MainPollsTVC: UITableViewController {
         
         cell.textLabel?.text = poll.title
         
-        var names = [String]()
-        for user in poll.users {
-            names.append(user.firstName)
-        }
+        let names = returnObjectNames(poll)
         
         if names.count > 2 {
             cell.detailTextLabel?.text = "with \(names[0]), \(names[1]), and \(names.count - 2) others"
