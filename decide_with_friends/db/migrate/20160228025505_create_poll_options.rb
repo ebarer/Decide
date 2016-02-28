@@ -6,6 +6,7 @@ class CreatePollOptions < ActiveRecord::Migration
       t.boolean "winning_poll", :default => false
       t.integer "votes", :default => 0
       t.string "user_ids"
+      t.boolean "isEnded", default => false
 
       t.timestamps null: false
     end
