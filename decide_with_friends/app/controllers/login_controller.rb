@@ -19,7 +19,7 @@ class LoginController < ApplicationController
       if @user.save
         render json: @user
       else
-        render json: => @user
+        render json: @user
     	end
     else
       render json: @user
