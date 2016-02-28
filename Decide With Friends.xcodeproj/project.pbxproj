@@ -13,8 +13,8 @@
 		891876F11C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876EA1C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift */; };
 		891876F21C82FE8200377731 /* AddPollTVC_Options_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876EB1C82FE8200377731 /* AddPollTVC_Options_Movie.swift */; };
 		891876F31C82FE8200377731 /* PollTypeTVC_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876EC1C82FE8200377731 /* PollTypeTVC_Movie.swift */; };
-		891876F41C82FE8200377731 /* PollTypeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876ED1C82FE8200377731 /* PollTypeTVC.swift */; };
 		891876F61C82FF1E00377731 /* PollMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876F51C82FF1E00377731 /* PollMovie.swift */; };
+		92607C921C834FFA009DFC33 /* PollTypeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92607C911C834FFA009DFC33 /* PollTypeTVC.swift */; };
 		92C4E0191C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C4E0181C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift */; };
 		CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0469221C828DC4004BC11F /* LoginManager.swift */; };
 		CE0C1DBB1C82AFFF007468EC /* DatabaseTransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */; };
@@ -46,8 +46,8 @@
 		891876EA1C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_Options_AddCell_Movie.swift; path = Add/AddPollTVC_Options_AddCell_Movie.swift; sourceTree = "<group>"; };
 		891876EB1C82FE8200377731 /* AddPollTVC_Options_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_Options_Movie.swift; path = Add/AddPollTVC_Options_Movie.swift; sourceTree = "<group>"; };
 		891876EC1C82FE8200377731 /* PollTypeTVC_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollTypeTVC_Movie.swift; path = Add/PollTypeTVC_Movie.swift; sourceTree = "<group>"; };
-		891876ED1C82FE8200377731 /* PollTypeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollTypeTVC.swift; path = Add/PollTypeTVC.swift; sourceTree = "<group>"; };
 		891876F51C82FF1E00377731 /* PollMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollMovie.swift; path = Models/Polls/PollMovie.swift; sourceTree = "<group>"; };
+		92607C911C834FFA009DFC33 /* PollTypeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollTypeTVC.swift; path = Add/PollTypeTVC.swift; sourceTree = "<group>"; };
 		92C4E0181C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollVC_TheatersAndTimes_Movie.swift; path = Add/AddPollVC_TheatersAndTimes_Movie.swift; sourceTree = "<group>"; };
 		CE0469221C828DC4004BC11F /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginManager.swift; path = Login/LoginManager.swift; sourceTree = "<group>"; };
 		CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseTransportManager.swift; path = Models/DatabaseTransportManager.swift; sourceTree = "<group>"; };
@@ -100,8 +100,8 @@
 		CE64F2E11C82E72E0004A5F8 /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				92607C911C834FFA009DFC33 /* PollTypeTVC.swift */,
 				CE64F2D91C82E7280004A5F8 /* AddPoll.storyboard */,
-				891876ED1C82FE8200377731 /* PollTypeTVC.swift */,
 				CE64F2DB1C82E7280004A5F8 /* AddPollTVC.swift */,
 				CEFBA8B31C82F12F00562664 /* AddPollTVC_Options_AddCell.swift */,
 				CEFBA8B71C82F48D00562664 /* AddPollTVC_InviteFriends.swift */,
@@ -276,6 +276,7 @@
 			files = (
 				92C4E0191C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift in Sources */,
 				CEB049BF1C8288ED00AD0D55 /* Users.swift in Sources */,
+				92607C921C834FFA009DFC33 /* PollTypeTVC.swift in Sources */,
 				891876F61C82FF1E00377731 /* PollMovie.swift in Sources */,
 				CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */,
 				CEB049C91C82894600AD0D55 /* LoginTVC.swift in Sources */,
@@ -294,7 +295,6 @@
 				891876F31C82FE8200377731 /* PollTypeTVC_Movie.swift in Sources */,
 				891876F01C82FE8200377731 /* AddPollTVC_Movie.swift in Sources */,
 				CE64F2DE1C82E7280004A5F8 /* AddPollTVC_Options.swift in Sources */,
-				891876F41C82FE8200377731 /* PollTypeTVC.swift in Sources */,
 				CEFBA8B81C82F48D00562664 /* AddPollTVC_InviteFriends.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
