@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="l2x-MN-N8R">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10112" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="l2x-MN-N8R">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
     </dependencies>
     <scenes>
         <!--Pending-->
@@ -122,7 +122,7 @@
         <!--Welcome-->
         <scene sceneID="au2-0G-CAU">
             <objects>
-                <tableViewController id="dY6-fR-grJ" customClass="LoginTVC" customModule="Decide" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="dY6-fR-grJ" customClass="LoginTVC" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="iLP-fU-1NJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -184,7 +184,7 @@
         <!--LoginTVC-->
         <scene sceneID="BqD-Wr-naV">
             <objects>
-                <viewController id="DC0-X1-T7m" customClass="LoginTVC" customModule="Decide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DC0-X1-T7m" customClass="LoginTVC" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="37I-sK-9R1"/>
                         <viewControllerLayoutGuide type="bottom" id="aw9-8Y-Lvp"/>
