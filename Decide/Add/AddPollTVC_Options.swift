@@ -103,7 +103,7 @@ class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
         // Create new option
         let count = tableView.numberOfRowsInSection(1)
         
-        if let title = textField.text {
+        if let title = textField.text where !title.isEmpty {
             let newOption = Option(title: title)
             newPoll.addOption(newOption)
             

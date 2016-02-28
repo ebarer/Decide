@@ -14,6 +14,7 @@ class AddPollTVC_InviteFriends: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.editing = true
     }
 
     override func didReceiveMemoryWarning() {
