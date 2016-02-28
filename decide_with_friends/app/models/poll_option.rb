@@ -1,5 +1,5 @@
 class PollOption < ActiveRecord::Base
 
-	belongs_to :Poll
-	belongs_to :Option
+	belongs_to :poll
+	belongs_to :option
 end
