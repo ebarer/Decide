@@ -16,6 +16,7 @@ class User: NSObject {
     var email: String?
     var fb_id: String
     var profilePicture: NSURL?
+    var polls = [Poll]()
     
     init(withFirstName firstName: String, lastName: String, email: String?, fb_id: String) {
         self.firstName = firstName

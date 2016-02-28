@@ -16,6 +16,9 @@ class Poll: NSObject {
     var isEnded: Bool = false
     var options = [Option]()
     
+    var admin:User?
+    var users = [User]()
+    
     var winningOption: Option? {
         if options.count > 0 {
             var winningOption = options.first

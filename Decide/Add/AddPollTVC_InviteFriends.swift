@@ -14,7 +14,6 @@ class AddPollTVC_InviteFriends: UITableViewController {
     var newPoll = Poll(title: "Hello")
     var friends = [String: [User]]()
     var sectionTitles = [String]()
-    var selectedFriends = [NSIndexPath]()
 
     @IBOutlet var inviteButton: UIBarButtonItem!
     
@@ -22,7 +21,7 @@ class AddPollTVC_InviteFriends: UITableViewController {
         super.viewDidLoad()
         self.tableView.editing = true
         
-        if selectedFriends.count > 0 {
+        if let selected = self.tableView.indexPathsForSelectedRows where selected.count > 0 {
             inviteButton.enabled = true
         } else {
             inviteButton.enabled = false
@@ -139,9 +138,7 @@ class AddPollTVC_InviteFriends: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //
-        
-        if selectedFriends.count > 0 {
+        if let selected = self.tableView.indexPathsForSelectedRows where selected.count > 0 {
             inviteButton.enabled = true
         } else {
             inviteButton.enabled = false
@@ -152,11 +149,25 @@ class AddPollTVC_InviteFriends: UITableViewController {
     // MARK: - Navigation
 
     @IBAction func createPoll(sender: AnyObject) {
-        
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(segue.destinationViewController)
+        if let indexes = self.tableView.indexPathsForSelectedRows where indexes.count > 0 {
+            // Set self as admin
+            newPoll.admin = currentUser
+            
+            // Update poll with invited friends
+            for selected in indexes {
+                if let user = friends[sectionTitles[selected.section]]?[selected.row] {
+                    newPoll.users.append(user)
+                }
+            }
+            
+            // Add poll to global array
+            polls.append(newPoll)
+            
+            // Dismiss and push to poll details
+            dismissViewControllerAnimated(true, completion: {
+                print("Push to details")
+            })
+        }
     }
 
 }
