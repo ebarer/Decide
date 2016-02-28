@@ -19,9 +19,12 @@ class PollController < ApplicationController
     @poll = Poll.new(params.permit(:title, :isEnded))
 
     if @poll.save
-      if (params[:options])
-        params[:options].each do |option|
-          @Poll.options << Option.create(:title => option.title)
+
+      options = ActiveSupport::JSON.decode(params[:options])
+
+      if (options)
+        options.each do |option|
+          @poll.options << Option.create(:title => option[:title])
         end
         render json: @poll
       end
