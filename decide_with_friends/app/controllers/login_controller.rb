@@ -1,5 +1,4 @@
 class LoginController < ApplicationController
-  
   protect_from_forgery with: :null_session
   
   layout false
@@ -9,10 +8,8 @@ class LoginController < ApplicationController
   end
 
   def create 
-    # Instantiate a new object using form parameters
     @user = User.new(params.permit(:first_name, :last_name, :email, :fb_id))
     @user.save
-    # Save the object
     #if @user.save
     # If save succeeds, redirect to the index action
       #redirect_to(:action => 'index')
