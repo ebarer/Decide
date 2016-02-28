@@ -70,9 +70,9 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDel
             if let email = result.valueForKey("email") as? String {
                 if let fbID = result.valueForKey("id") as? String {
                     let profile = FBSDKProfile.currentProfile()
-                    let user = User(withFirstName: profile.firstName, lastName: profile.lastName, email: email, fb_id: fbID)
+                    currentUser = User(withFirstName: profile.firstName, lastName: profile.lastName, email: email, fb_id: fbID)
                     
-                    if user.saveUser() {
+                    if currentUser!.saveUser() {
                         print("\(FBSDKProfile.currentProfile().firstName) logged in!")
                         self.performSegueWithIdentifier("loggedIn", sender: nil)
                     }

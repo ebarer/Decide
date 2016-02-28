@@ -8,6 +8,9 @@
 
 import UIKit
 
+var currentUser: User?
+var polls = [Poll]()
+
 class MainTBC: UITabBarController {
     
     override func viewDidLoad() {
