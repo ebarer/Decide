@@ -1,7 +1,6 @@
 class CreateUsers < ActiveRecord::Migration
   def up
     create_table :users do |t|
-      t.integer "fb_id"
       t.string "profile_picture"
       t.string "first_name", :limit => 50, :null => false
       t.string "last_name", :limit => 50, :null => false
@@ -9,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_column :users, "fb_id", :bigint
   end
 
   def down
