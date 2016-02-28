@@ -11,22 +11,55 @@ import UIKit
 class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
     
     var newPoll: Poll!
-
+    
+    @IBOutlet var nextButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.editing = true
+        
+        if newPoll.options.count > 1 {
+            nextButton.enabled = false
+        } else {
+            nextButton.enabled = false
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if let addCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) {
+            if addCell.isKindOfClass(AddPollTVC_Options_AddCell) {
+                (addCell as! AddPollTVC_Options_AddCell).addOptionTextField.becomeFirstResponder()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
 
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "Options"
+        }
+        
+        return nil
+    }
+    
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 1 {
+            return "Add a minimum of 2 options for this poll"
+        }
+        
+        return nil
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (section == 0) ? 1 : newPoll.options.count
     }
@@ -54,16 +87,15 @@ class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
         if editingStyle == .Delete {
             newPoll.options.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            if newPoll.options.count > 1 {
+                nextButton.enabled = true
+            } else {
+                nextButton.enabled = false
+            }
         }
     }
-    
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return (indexPath.section == 0) ? false : true
-    }
-    
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
-    }
     
     // MARK: - Text Field Methods
     
@@ -76,6 +108,12 @@ class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
             newPoll.addOption(newOption)
             
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: count, inSection: 1)], withRowAnimation: .Automatic)
+            
+            if newPoll.options.count > 1 {
+                nextButton.enabled = true
+            } else {
+                nextButton.enabled = false
+            }
             
             // Reset add text field
             textField.text = nil
@@ -91,7 +129,11 @@ class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(segue.destinationViewController)
+        if segue.identifier == "inviteFriends" {
+            if let vc = segue.destinationViewController as? AddPollTVC_InviteFriends {
+                vc.newPoll = newPoll
+            }
+        }
     }
 
 }

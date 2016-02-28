@@ -75,6 +75,8 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDel
                     if user.saveUser() {
                         print("\(FBSDKProfile.currentProfile().firstName) logged in!")
                         self.performSegueWithIdentifier("loggedIn", sender: nil)
+                        
+                        
                     }
                 }
             }
