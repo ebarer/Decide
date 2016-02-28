@@ -20,6 +20,11 @@ class MoviePoll: Poll {
     }
 }
 
+    // MARK: - Facebook Methods
+
+//We will need to port the below class to the view controller class that we will
+//need location data for
+
 //class ViewWhereWeUseLocationStuff: CLLocationManagerDelegate {
 //    var locationManager: CLLocationManager!
 //    
