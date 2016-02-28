@@ -163,6 +163,9 @@ class AddPollTVC_InviteFriends: UITableViewController {
             // Add poll to global array
             polls.append(newPoll)
             
+            // Save poll
+            newPoll.savePoll()
+            
             NSNotificationCenter.defaultCenter().postNotificationName("refreshPolls", object: nil)
             
             // Update MainPollsTVC

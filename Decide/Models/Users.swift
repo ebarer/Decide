@@ -16,7 +16,7 @@ class User: NSObject {
     var email: String?
     var fb_id: String
     var profilePicture: NSURL?
-    var polls = [Poll]()
+    var userPolls = [Poll]()
     
     init(withFirstName firstName: String, lastName: String, email: String?, fb_id: String) {
         self.firstName = firstName
@@ -29,7 +29,7 @@ class User: NSObject {
         let manager = DatabaseTransportManager()
         let object = self.toDict()
         
-        let request = manager.postRequest(withParams: object, urlString: "https://dwfnwhacks2016.herokuapp.com/login/create")
+        let request = manager.postRequest(withParams: object, urlString: "login/create")
         if request.success {
             self.pk_uid = request.response?.valueForKey("pk_uid") as? Int
             defaults.setValue(self.pk_uid, forKey: "pk_uid")
@@ -40,23 +40,36 @@ class User: NSObject {
         return false
     }
     
-    class func getUser(pk_uid: Int) -> User {
-        // Send to backend UID
-        
-        // Backend sends JSON
-        
-        // Create User
-        return User(withFirstName: "Elliot", lastName: "Barer", email: "ebarer@mac.com", fb_id: String(1001))
-    }
-    
+    // Send data, retrieve pk_uid
     func toDict() -> [String: String] {
         var dict = ["first_name": firstName, "last_name": lastName, "fb_id": fb_id]
+        
         if let email = email {
             dict["email"] = email
         }
         
+        if let pictureUrl = profilePicture {
+            dict["profile_picture"] = String(pictureUrl)
+        }
+        
+        var pollUID = [String]()
+        for poll in polls {
+            if let uid = poll.pk_uid {
+                pollUID.append("{\"id\": \(String(uid))}")
+            }
+        }
+        
+        if pollUID.count > 0 {
+            dict["polls"] = "[\(pollUID.joinWithSeparator(","))]"
+        }
+
         return dict
     }
+    
+    // Send pk_uid, retrieve data
+//    class func getUser(pk_uid: Int) -> User {
+//        
+//    }
     
     func getFriends() -> [User]? {
         return nil

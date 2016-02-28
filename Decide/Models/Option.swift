@@ -19,15 +19,21 @@ class Option: NSObject {
         self.title = title
     }
     
-    func voteFor(voter: User) {
+    func voteFor(withVoter voter: User) {
         votes.count += 1
         votes.users.append(voter)
     }
     
-    func unvoteFor(voter: User) {
+    func unvoteFor(withVoter voter: User) {
         votes.count -= 1
         votes.users.removeObject(voter)
     }
+    
+    func toDict() -> [String: String] {
+        var dict:[String: String] = ["title": title]
+        return dict
+    }
+
 }
 
 // MARK: - Array extension

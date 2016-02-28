@@ -10,21 +10,29 @@ import UIKit
 
 class AddPollTVC: UITableViewController, UITextFieldDelegate {
 
-    var newPoll: Poll!
+    var newPoll: Poll
     
     @IBOutlet var nextButton: UIBarButtonItem!
     @IBOutlet var pollTitleTextField: UITextField!
     
     required init?(coder aDecoder: NSCoder) {
-        newPoll = Poll(title: "")
+        newPoll = Poll()
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if newPoll.title.isEmpty {
-            nextButton.enabled = false
+        // #DEBUG
+        if let text = pollTitleTextField.text {
+            newPoll.title = text
+            newPoll.options = [Option(title: "Test1"), Option(title: "Test2")]
+        }
+        
+        if let title = newPoll.title where !title.isEmpty {
+            nextButton.enabled = true
+        } else {
+            nextButton.enabled = true
         }
     }
     
@@ -35,8 +43,7 @@ class AddPollTVC: UITableViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
+
     @IBAction func updateTitle(sender: UITextField) {
         newPoll.title = sender.text!
         
@@ -51,7 +58,7 @@ class AddPollTVC: UITableViewController, UITextFieldDelegate {
     // MARK: - Text Field Methods
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if !newPoll.title.isEmpty {
+        if let title = newPoll.title where !title.isEmpty {
             performSegueWithIdentifier("addOptions", sender: nil)
             return true
         }
@@ -63,7 +70,11 @@ class AddPollTVC: UITableViewController, UITextFieldDelegate {
     // MARK: - Navigation
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        return (newPoll.title.isEmpty) ? false: true
+        if let title = newPoll.title where !title.isEmpty {
+            return true
+        } else {
+            return false
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
