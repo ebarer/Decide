@@ -12,28 +12,85 @@ import MapKit
 class Movie: Option {
     // location and times from google,
     // others from imdb
-    var rating: Float?
+    var imdbRating: Float?
     var length: String?
     var genre: String?
     var times: [NSDate]?
     var location: String?
     var plot: String?
     var poster: String?
+    var movieRating: String?
     
-    convenience init(withUID uid: Int, fk_uid: Int, title: String, rating: Float, length: String, genre: String, times: [NSDate], location: String, plot: String, poster: String) {
+    convenience init(withUID uid: Int, fk_uid: Int, title: String, imdbRating: Float, length: String, genre: String, times: [NSDate], location: String, plot: String, poster: String, movieRating: String) {
         self.init(withUID: uid, fk_uid: fk_uid, title: title)
         
-        self.rating = rating
+        self.imdbRating = imdbRating
         self.length = length
         self.genre = genre
         self.times = times
         self.location = location
         self.plot = plot
         self.poster = poster
+        self.movieRating = movieRating
+    }
+    
+    func scrapeMoviesNearMe() {
+        // q = query (search, ie for movie)
+        // lat = latitude
+        // long = longitude
+
+        let lat = 49.5
+        let long = 123.2
+        
+        let html: String?
+        do {
+            html = try String(contentsOfURL: NSURL(string: "http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))!, encoding: NSASCIIStringEncoding)
+        } catch _ {
+            html = nil
+        }
+        print(html)
+        print("http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))
+        
+        // NOW PARSE IT
+        var html_parse = html!.componentsSeparatedByString("<div class=theater>")
+        html_parse.removeAtIndex(0) // doesnt have movie info
+        for theater in html_parse{
+            if theater.rangeOfString("<span class=closure>") != nil {
+                // theater hase no showtimes. remove from array
+                html_parse.removeObject(theater)
+            }
+            else{
+                // Retrieve Theater Name
+                //PASS
+                
+                //For temp, find Scotiabank Theatre Vancouver
+                if theater.rangeOfString("Scotiabank Theatre Vancouver") != nil{
+                    // seperate movie info
+                    var movies = theater.componentsSeparatedByString("<div class=movie>")
+                    var theaterinfo = movies.removeAtIndex(0)
+                    for movie in movies{
+                        var title = movie.componentsSeparatedByString("<span class=info>")[0] //<div class=name><a href=\"/movies?mid=7b17035926c6c3bb\">Kung Fu Panda 3 3D</a></div>
+                        title = (title.componentsSeparatedByString(">")[2]).componentsSeparatedByString("<")[0]
+                        print(title)
+                        var info = (movie.componentsSeparatedByString("<span class=info>")[1]).componentsSeparatedByString("<a href")[0]
+                        print(info) // TO DO parse further
+                        var length = info.componentsSeparatedByString(" -")[0]
+                        var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
+                        times.removeAtIndex(0)
+                        var timearray: [String] = []
+                        for time in times{
+                            timearray.append(time.componentsSeparatedByString("</span>")[0])
+                            print(time.componentsSeparatedByString("</span>")[0])
+                        }
+                    }
+                }
+            }
+        }
+        
     }
     
     func getMovieInfo() {
-        // URL Parameters:
+        // omdb URL Parameters:
         // i = imdb id
         // t = movie title
         // type = {movie, series, episode} type of result
@@ -53,13 +110,12 @@ class Movie: Option {
                 do {
                     let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options:[])
                     //print("Array: \(jsonArray)")
-                    self.rating = Float(jsonArray["imdbRating"] as! String)
+                    self.imdbRating = Float(jsonArray["imdbRating"] as! String)
                     self.length = (jsonArray["Runtime"] as! String)
                     self.genre = (jsonArray["Plot"] as! String)
                     self.plot = (jsonArray["Plot"] as! String)
                     self.poster = (jsonArray["Poster"] as! String)
-                }
-                catch {
+                } catch {
                     print("Error: \(error)")
                 }
                 
@@ -71,18 +127,3 @@ class Movie: Option {
         task.resume()
     }
 }
-
-// MARK: - MovieGenre Enum
-//enum MovieGenre {
-//    case Action
-//    case Comedy
-//    case Horror
-//    
-//    var description: String {
-//        switch self {
-//        case .Action: return "Action"
-//        case .Comedy: return "Comedy"
-//        case .Horror: return "Horror"
-//        }
-//    }
-//}
