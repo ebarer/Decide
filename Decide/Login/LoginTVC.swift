@@ -10,9 +10,12 @@ import UIKit
 import Accounts
 import FBSDKCoreKit
 import FBSDKLoginKit
+import CoreLocation
 
-class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
+class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDelegate {
 
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +30,20 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
             loginButton.center = self.view.center
             self.view.addSubview(loginButton)
         }
+        
+        // Set up location services
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        
+        //scratch
+        //let test = Movie(withUID: 1002, fk_uid: 1004, title: "Alivepool")
+        
+        //test.requestLocation()
+        //endscratch
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,4 +75,10 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
         print(segue.destinationViewController)
     }
 
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedWhenInUse {
+            // do stuff
+            print("Hello")
+        }
+    }
 }
