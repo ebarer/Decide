@@ -8,19 +8,44 @@
 
 import UIKit
 
-class Poll:NSObject {
-    let pk_uid: Int
-    var title: String
-    var optionIds = [Int]()
-    var winningOptionId: Int
-    var isEnded: Bool
+class Poll: NSObject {
     
-    init(withUID uid: Int, title: String, optionIds: [Int], winningOptionId: Int, isEnded: Bool) {
-        self.pk_uid = uid
-        self.title = title
-        self.optionIds = optionIds
-        self.winningOptionId = winningOptionId
-        self.isEnded = isEnded
+    var pk_uid: Int?
+    var title: String
+    var isEnded: Bool = false
+    var options = [Option]()
+    
+    var winningOption: Option? {
+        if options.count > 0 {
+            var winningOption = options.first
+            
+            for option in options {
+                if option.votes.count > winningOption?.votes.count {
+                    winningOption = option
+                }
+                
+                return winningOption
+            }
+        }
+        
+        return nil
     }
+    
+    init(title: String) {
+        self.title = title
+    }
+    
+    func closePoll() {
+        self.isEnded = true
+    }
+    
+    func addOption(newOption: Option) {
+        self.options.append(newOption)
+    }
+    
+    func removeOption(option: Option) {
+        self.options.removeObject(option)
+    }
+    
     
 }

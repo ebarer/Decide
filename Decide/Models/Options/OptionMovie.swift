@@ -10,6 +10,7 @@ import Foundation
 import MapKit
 
 class Movie: Option {
+    
     var rating: Float?
     var length: NSTimeInterval?
     var genre: MovieGenre?
@@ -17,7 +18,7 @@ class Movie: Option {
     var location: String?
     
     convenience init(withUID uid: Int, fk_uid: Int, title: String, rating: Float, length: Double, genre: MovieGenre, times: [NSDate], location: String) {
-        self.init(withUID: uid, fk_uid: fk_uid, title: title)
+        self.init(title: title)
         
         self.rating = rating
         self.length = NSTimeInterval(length)

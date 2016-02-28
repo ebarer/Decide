@@ -65,7 +65,7 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
         let request = FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields": "email"])
         request.startWithCompletionHandler({ (connection, result, error) in
             if let email = result.valueForKey("email") as? String {
-                if let fbID = result.valueForKey("id") as? Double {
+                if let fbID = result.valueForKey("id") as? String {
                     let profile = FBSDKProfile.currentProfile()
                     let user = User(withFirstName: profile.firstName, lastName: profile.lastName, email: email, fb_id: fbID)
                     
@@ -75,6 +75,8 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
                     }
                 }
             }
+            
+            self.performSegueWithIdentifier("loggedIn", sender: nil)
         })
     }
     
