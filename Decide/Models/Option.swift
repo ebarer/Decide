@@ -19,8 +19,25 @@ class Option: NSObject {
         self.title = title
     }
     
+    func updateOption() {
+        DatabaseTransportManager().postRequest(withParams: self.toDict(), urlString: "option/update") { (response) in
+            print(response)
+        }
+    }
+    
     func toDict() -> [String: String] {
-        let dict:[String: String] = ["title": title]
+        var dict:[String: String] = ["title": title, "count": String(votes.count)]
+        
+        // Save changes
+        var usersUID = [String]()
+        for user in votes.users {
+            usersUID.append("{\"id\": \(user.fb_id)}")
+        }
+        
+        if usersUID.count > 0 {
+            dict["users"] = "[\(usersUID.joinWithSeparator(","))]"
+        }
+
         return dict
     }
     
@@ -40,6 +57,7 @@ class Option: NSObject {
             votes.users.removeObject(voter)
         }
     }
+
 
 }
 

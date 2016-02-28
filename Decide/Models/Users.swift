@@ -30,18 +30,44 @@ class User: NSObject {
         DatabaseTransportManager().postRequest(withParams: object, urlString: "login/index") { (response) in
             print(response)
             if let response = response {
-                if let _ = response.valueForKey("Error") {
-                    // #DEBUG
-                    defaults.setValue(nil, forKey: "pk_uid")
-                    fatalError("Bad account")
+                if let errorCode = response.valueForKey("status") as? Int {
+                    if errorCode < 300 {
+                        // #DEBUG
+                        defaults.setValue(nil, forKey: "pk_uid")
+                        fatalError("Bad account")
+                    }
                 } else {
                     let firstName = response.valueForKey("first_name") as! String
                     let lastName = response.valueForKey("last_name") as! String
                     let email = response.valueForKey("email") as! String
                     let fbID = response.valueForKey("fb_id") as! Int
                     
+                    // Setup polls
+                    if let pollObjects = response.valueForKey("polls") as? NSArray {
+                        for object in pollObjects {
+                            if let object = object as? [String: AnyObject] {
+                                let poll = Poll(title: (object["title"] as! String))
+                                
+                                if let options = object["options"] as? NSArray {
+                                    print(options)
+                                    for option in options {
+                                        if let option = option as? [String: AnyObject] {
+                                            //newPoll.options.append()   
+                                        }
+                                    }
+                                }
+                                
+                                polls.append(poll)
+                            }
+                        }
+                    }
+        
                     currentUser = User(withFirstName: firstName, lastName: lastName, email: email, fb_id: String(fbID))
                     currentUser?.pk_uid = pk_uid
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        NSNotificationCenter.defaultCenter().postNotificationName("refreshPolls", object: nil)
+                    })
                 }
             }
         }
@@ -50,10 +76,18 @@ class User: NSObject {
     func saveUser() {
         DatabaseTransportManager().postRequest(withParams: self.toDict(), urlString: "login/create") { (response) in
             print(response)
-            if let id = response?.valueForKey("id") as? Int {
-                self.pk_uid = id
-                defaults.setValue(id, forKey: "pk_uid")
-                defaults.synchronize()
+            if let response = response {
+                if let errorCode = response.valueForKey("status") as? Int {
+                    if errorCode < 300 {
+                        // #DEBUG
+                        defaults.setValue(nil, forKey: "pk_uid")
+                        fatalError("Bad account")
+                    }
+                } else if let id = response.valueForKey("id") as? Int {
+                    self.pk_uid = id
+                    defaults.setValue(id, forKey: "pk_uid")
+                    defaults.synchronize()
+                }
             }
         }
     }
