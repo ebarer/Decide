@@ -27,7 +27,7 @@ class PollController < ApplicationController
       @user.polls << @poll
 
       if (fbusers) do |fbuser|
-        @fuser = User.where(:fb_id => fuser.id)
+        @fuser = User.where(:fb_id => fbuser.id)
         @fuser.polls << @poll
       end
 
