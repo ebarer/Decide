@@ -163,6 +163,17 @@ class AddPollTVC_InviteFriends: UITableViewController {
             // Add poll to global array
             polls.append(newPoll)
             
+            NSNotificationCenter.defaultCenter().postNotificationName("refreshPolls", object: nil)
+            
+            // Update MainPollsTVC
+//            if let tbc = self.presentingViewController as? MainTBC {
+//                if let nvc = tbc.viewControllers![0] as? UINavigationController {
+//                    if let vc = nvc.topViewController as? MainPollsTVC {
+//                        vc.tableView.reloadData()
+//                    }
+//                }
+//            }
+            
             // Dismiss and push to poll details
             dismissViewControllerAnimated(true, completion: {
                 print("Push to details")
