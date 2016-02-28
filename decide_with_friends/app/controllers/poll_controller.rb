@@ -22,6 +22,7 @@ class PollController < ApplicationController
       params[:options].each do |option|
         @Poll.options << Option.create(option)
       end
+    end
 
     if @poll.save
       redirect_to :action => index
