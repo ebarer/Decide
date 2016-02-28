@@ -67,53 +67,50 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
             else{//theater has showtimes. Add to Array of movie objects
                 
                 // Retrieve Theater Name
-                //PASS
-                
-                //For temp, find Scotiabank Theatre Vancouver
-                if theater.rangeOfString("Scotiabank Theatre Vancouver") != nil{
-                    // seperate movie info
-                    var movies = theater.componentsSeparatedByString("<div class=movie>")
-                    let theaterinfo = movies.removeAtIndex(0)
-                    for movie in movies{
-                        var flag = false
-                        var title = movie.componentsSeparatedByString("<span class=info>")[0]
-                        title = (title.componentsSeparatedByString(">")[2]).componentsSeparatedByString("<")[0]
-                        for eachMovie in newPoll.movieOptions{
-                            if title == eachMovie.title{
-                                // already populated. add location/time data
-                                flag = true
-                                var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
-                                times.removeAtIndex(0)
-                                var timearray: [String] = []
-                                for time in times{
-                                    timearray.append(time.componentsSeparatedByString("</span>")[0])
-                                }
-                                eachMovie.locationsAndTimes?.append(("Scotiabank Theatre Vancouver", timearray))
-                            }
-                        }
-                        if flag == false {
-                            // movie wasn't found. Append and populate new object
-                            let info = (movie.componentsSeparatedByString("<span class=info>")[1]).componentsSeparatedByString("<a href")[0]
-                            let length = info.componentsSeparatedByString(" -")[0]
-                            var rated : String
-                            if info.rangeOfString("Rated") != nil{
-                                rated = (info.componentsSeparatedByString("Rated ")[1]).componentsSeparatedByString(" -")[0]
-                            }
-                            else{
-                                rated = ""
-                            }
+                var theatername = (theater.componentsSeparatedByString("<h2 class=name>")[1]).componentsSeparatedByString("</h2>")[0]
+                print(theatername)
+                // seperate movie info
+                var movies = theater.componentsSeparatedByString("<div class=movie>")
+                let theaterinfo = movies.removeAtIndex(0)
+                for movie in movies{
+                    var flag = false
+                    var title = movie.componentsSeparatedByString("<span class=info>")[0]
+                    title = (title.componentsSeparatedByString(">")[2]).componentsSeparatedByString("<")[0]
+                    for eachMovie in newPoll.movieOptions{
+                        if title == eachMovie.title{
+                            // already populated. add location/time data
+                            flag = true
                             var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
                             times.removeAtIndex(0)
                             var timearray: [String] = []
                             for time in times{
                                 timearray.append(time.componentsSeparatedByString("</span>")[0])
                             }
-                            
-                            newPoll.movieOptions.append(Movie(title: title, imdbRating: 0.0, length: length, genre: "", locationsAndTimes: [("Scotiabank Theatre Vancouver", timearray)], plot: "", poster: "", movieRating: rated))
-                            newPoll.movieOptions.last?.getMovieInfo()
-                            
-                            print(newPoll.movieOptions)
+                            eachMovie.locationsAndTimes?.append((theatername, timearray))
                         }
+                    }
+                    if flag == false {
+                        // movie wasn't found. Append and populate new object
+                        let info = (movie.componentsSeparatedByString("<span class=info>")[1]).componentsSeparatedByString("<a href")[0]
+                        let length = info.componentsSeparatedByString(" -")[0]
+                        var rated : String
+                        if info.rangeOfString("Rated") != nil{
+                            rated = (info.componentsSeparatedByString("Rated ")[1]).componentsSeparatedByString(" -")[0]
+                        }
+                        else{
+                            rated = ""
+                        }
+                        var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
+                        times.removeAtIndex(0)
+                        var timearray: [String] = []
+                        for time in times{
+                            timearray.append(time.componentsSeparatedByString("</span>")[0])
+                        }
+                            
+                        newPoll.movieOptions.append(Movie(title: title, imdbRating: 0.0, length: length, genre: "", locationsAndTimes: [(theatername, timearray)], plot: "", poster: "", movieRating: rated))
+                        newPoll.movieOptions.last?.getMovieInfo()
+                            
+                        print(newPoll.movieOptions)
                     }
                 }
             }
