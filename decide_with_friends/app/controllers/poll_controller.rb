@@ -23,7 +23,7 @@ class PollController < ApplicationController
         params[:options].each do |option|
           @Poll.options << Option.create(:title => option.title)
         end
-        render json: @poll.id
+        render json: '{"pk_uid" : @poll.id}'
       end
     else
       render :json => '{"Error" : "53", "Error_msg" : "Error saving to database"}'
