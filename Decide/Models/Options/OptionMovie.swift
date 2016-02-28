@@ -10,20 +10,26 @@ import Foundation
 import MapKit
 
 class Movie: Option {
+    // location and times from google,
+    // others from imdb
     var rating: Float?
-    var length: NSTimeInterval?
-    var genre: MovieGenre?
+    var length: String?
+    var genre: String?
     var times: [NSDate]?
     var location: String?
+    var plot: String?
+    var poster: String?
     
-    convenience init(withUID uid: Int, fk_uid: Int, title: String, rating: Float, length: Double, genre: MovieGenre, times: [NSDate], location: String) {
+    convenience init(withUID uid: Int, fk_uid: Int, title: String, rating: Float, length: String, genre: String, times: [NSDate], location: String, plot: String, poster: String) {
         self.init(withUID: uid, fk_uid: fk_uid, title: title)
         
         self.rating = rating
-        self.length = NSTimeInterval(length)
+        self.length = length
         self.genre = genre
         self.times = times
         self.location = location
+        self.plot = plot
+        self.poster = poster
     }
     
     func getMovieInfo() {
@@ -37,50 +43,52 @@ class Movie: Option {
         // tomatoes = {true, false} bool to return rotten tomatoes ratings
         // callback = JSONP callback name
         // v = API version
-        let url: NSURL = NSURL(string: "http://www.omdbapi.com/?t=")!
-        let request = NSMutableURLRequest(URL: url)
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
-            do {
-                guard let data = data else { throw HTMLError.NoData }
-                guard let returnString = String(data: data, encoding: NSASCIIStringEncoding) else { throw HTMLError.ConversionFailed }
-                let returnArray = returnString.characters.split{$0 == ","}.map(String.init)
-                
-                if returnArray.count > 1 {
-                    // Update Movie values here
-                    // self.rating, etc..
-                } else {
-                    throw HTMLError.ExchangeRateMissing
+        //let url: NSURL = NSURL(string: "http://www.omdbapi.com/?t=" + self.title + "&type=movie&plot=short&r=json&tomatoes=true")!
+        //let request = NSMutableURLRequest(URL: url)
+        
+        let url = NSURL(string: "http://www.omdbapi.com/?t=" + self.title + "&type=movie&plot=short&r=json&tomatoes=true")!
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
+            if let data = data {
+                //print(NSString(data: data, encoding: NSUTF8StringEncoding))
+                do {
+                    let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options:[])
+                    //print("Array: \(jsonArray)")
+                    self.rating = Float(jsonArray["imdbRating"] as! String)
+                    self.length = (jsonArray["Runtime"] as! String)
+                    self.genre = (jsonArray["Plot"] as! String)
+                    self.plot = (jsonArray["Plot"] as! String)
+                    self.poster = (jsonArray["Poster"] as! String)
+                }
+                catch {
+                    print("Error: \(error)")
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    NSNotificationCenter.defaultCenter().postNotificationName("updateExchange", object: nil)
-                })
-            } catch let error as HTMLError {
-                print(error.rawValue)
-            } catch {
-                print(error)
+            } else {
+                print("\(response) - \(error)")
             }
-            }.resume()
+        }
+        
+        task.resume()
     }
 }
 
 // MARK: - MovieGenre Enum
-enum MovieGenre {
-    case Action
-    case Comedy
-    case Horror
-    
-    var description: String {
-        switch self {
-        case .Action: return "Action"
-        case .Comedy: return "Comedy"
-        case .Horror: return "Horror"
-        }
-    }
-}
+//enum MovieGenre {
+//    case Action
+//    case Comedy
+//    case Horror
+//    
+//    var description: String {
+//        switch self {
+//        case .Action: return "Action"
+//        case .Comedy: return "Comedy"
+//        case .Horror: return "Horror"
+//        }
+//    }
+//}
 
 enum HTMLError: String, ErrorType {
     case NoData = "-E- No data"
     case ConversionFailed = "-E- Conversion from JSON failed"
-    case ExchangeRateMissing = "-E- No exchange rate"
+    case NoReturnArray = "-E- No array returned"
 }
