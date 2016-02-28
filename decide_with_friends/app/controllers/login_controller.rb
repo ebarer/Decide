@@ -9,13 +9,10 @@ class LoginController < ApplicationController
 
   def create 
     @user = User.new(params.permit(:first_name, :last_name, :email, :fb_id))
-    @user.save
-    #if @user.save
-    # If save succeeds, redirect to the index action
-      #redirect_to(:action => 'index')
-    #else
-    # If save fails, redisplay the form so user can fix problems
-      #redirect_to(:action => 'index')
-  	#end 
+    if @user.save
+      render json: @user
+    else
+    render :text => "ERROR 500", :status => 500
+  	end 
   end
 end
