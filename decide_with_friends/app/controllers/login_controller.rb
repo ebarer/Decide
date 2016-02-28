@@ -6,7 +6,7 @@ class LoginController < ApplicationController
   def index
       if User.exists?(id: params[:pk_uid])
         @user = User.find(params[:pk_uid])
-        render :json => {:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :profile_picture => @user.profile_picture,
+        render :json => {:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :fb_id => @user.fb_id, :profile_picture => @user.profile_picture,
           :polls => @user.polls}
       else
         render :json => '{"Error" : "-1", "Error_msg" : "User does not exist"}'
@@ -19,10 +19,10 @@ class LoginController < ApplicationController
       if @user.save
         render json: @user
       else
-        render :json => '{"Error" : "53", "Error_msg" : "Error saving to database"}'
+        render json: => @user
     	end
     else
-      render :json => '{"Error" : "69", "Error_msg" : "User already exists"}'
+      render json: @user
     end
   end
 end
