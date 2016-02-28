@@ -27,6 +27,11 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
             self.view.addSubview(loginButton)
         }
         
+<<<<<<< HEAD
+        let test = Movie(withUID: 1001, fk_uid: 1002, title: "Deadpool")
+        test.getMovieInfo()
+        test.scrapeMoviesNearMe()
+=======
 //        if let _ = FBSDKAccessToken.currentAccessToken() {
 //            getProfile()
 //            self.performSegueWithIdentifier("loggedIn", sender: nil)
@@ -39,6 +44,7 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
 //                }
 //            }
 //        }
+>>>>>>> master
     }
     
     override func didReceiveMemoryWarning() {
