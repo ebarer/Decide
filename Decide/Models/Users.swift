@@ -8,7 +8,8 @@
 
 import UIKit
 
-class User:NSObject {
+class User: NSObject {
+    
     var pk_uid: Int?
     var firstName: String
     var lastName: String

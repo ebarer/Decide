@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Option:NSObject {
+class Option: NSObject {
     
     var pk_uid: Int?
     var fk_uid: Int?
