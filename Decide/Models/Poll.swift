@@ -9,9 +9,11 @@
 import UIKit
 import CoreLocation
 
-class Poll:NSObject {
-    let pk_uid: Int
+class Poll: NSObject {
+    
+    var pk_uid: Int?
     var title: String
+<<<<<<< HEAD
     var optionIds = [Int]()
     var winningOptionId: Int
     var isEnded: Bool = false
@@ -51,4 +53,42 @@ enum PollType {
         case .Restaurant: return "Restaurant"
         }
     }
+=======
+    var isEnded: Bool = false
+    var options = [Option]()
+    
+    var winningOption: Option? {
+        if options.count > 0 {
+            var winningOption = options.first
+            
+            for option in options {
+                if option.votes.count > winningOption?.votes.count {
+                    winningOption = option
+                }
+                
+                return winningOption
+            }
+        }
+        
+        return nil
+    }
+    
+    init(title: String) {
+        self.title = title
+    }
+    
+    func closePoll() {
+        self.isEnded = true
+    }
+    
+    func addOption(newOption: Option) {
+        self.options.append(newOption)
+    }
+    
+    func removeOption(option: Option) {
+        self.options.removeObject(option)
+    }
+    
+    
+>>>>>>> master
 }

@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20160228031126) do
     t.datetime "updated_at",                   null: false
   end
 
+  add_index "poll_options", ["poll_id", "option_id"], name: "index_poll_options_on_poll_id_and_option_id", using: :btree
+
   create_table "polls", force: :cascade do |t|
     t.string   "title"
     t.string   "type"
@@ -56,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160228031126) do
   add_index "user_polls", ["user_id", "poll_id"], name: "index_user_polls_on_user_id_and_poll_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.integer  "fb_id"
+    t.integer  "fb_id",          limit: 8
     t.string   "profilePicture"
     t.string   "first_name",     limit: 50,              null: false
     t.string   "last_name",      limit: 50,              null: false

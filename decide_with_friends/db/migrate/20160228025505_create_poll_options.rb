@@ -9,6 +9,7 @@ class CreatePollOptions < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :poll_options, ["poll_id", "option_id"]
   end
 
   def down

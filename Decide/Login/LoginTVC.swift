@@ -18,19 +18,19 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Ensure we can access the user profile
-        FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
-        
-        if let access = FBSDKAccessToken.currentAccessToken() {
-            print("Logged In \(access)")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if let _ = FBSDKAccessToken.currentAccessToken() {
+            proceedToApp()
         } else {
             let loginButton = FBSDKLoginButton()
-            loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+            loginButton.readPermissions = ["email", "public_profile", "user_friends"]
             loginButton.center = self.view.center
             self.view.addSubview(loginButton)
         }
         
+<<<<<<< HEAD
         // Set up location services
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -45,33 +45,67 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDel
         }
         
     
+=======
+<<<<<<< HEAD
+        let test = Movie(withUID: 1001, fk_uid: 1002, title: "Deadpool")
+        test.getMovieInfo()
+        test.scrapeMoviesNearMe()
+=======
+//        if let _ = FBSDKAccessToken.currentAccessToken() {
+//            getProfile()
+//            self.performSegueWithIdentifier("loggedIn", sender: nil)
+//        } else {
+//            let manager = LoginManager()
+//            manager.facebookLogin { (credential, token) -> Void in
+//                if let _ = FBSDKAccessToken.currentAccessToken() {
+//                    self.getProfile()
+//                    self.performSegueWithIdentifier("loggedIn", sender: nil)
+//                }
+//            }
+//        }
+>>>>>>> master
+>>>>>>> master
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
     
-    // MARK: - Facebook Delegate Methods
+    // MARK: - Facebook Methods
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        print ("User Logged In!")
-        
-        if let error = error {
-            print("Error: \(error)")
-        } else if result.isCancelled {
-            print("Cancelled")
-        } else {
-            print(result)
+        if !result.isCancelled && error == nil {
+            proceedToApp()
         }
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print ("User logged out!")
+        print("Logged out!")
     }
-
+    
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    func proceedToApp() {
+        let request = FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields": "email"])
+        request.startWithCompletionHandler({ (connection, result, error) in
+            if let email = result.valueForKey("email") as? String {
+                if let fbID = result.valueForKey("id") as? String {
+                    let profile = FBSDKProfile.currentProfile()
+                    let user = User(withFirstName: profile.firstName, lastName: profile.lastName, email: email, fb_id: fbID)
+                    
+                    if user.saveUser() {
+                        print("\(FBSDKProfile.currentProfile().firstName) logged in!")
+                        self.performSegueWithIdentifier("loggedIn", sender: nil)
+                    }
+                }
+            }
+            
+            self.performSegueWithIdentifier("loggedIn", sender: nil)
+        })
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(segue.destinationViewController)
     }
