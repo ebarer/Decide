@@ -24,7 +24,7 @@ class PollController < ApplicationController
 
       if (options)
         options.each do |option|
-          @poll.options << Option.create(:title => option[:title])
+          @poll.options << Option.create(:title => option["title"])
         end
         render json: @poll
       end
