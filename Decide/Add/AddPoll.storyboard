@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ywH-gs-tw5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ywH-gs-tw5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -71,6 +71,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vRV-TE-mZD" kind="show" id="8Pv-Ew-SWa"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ZKD-nM-lWJ" style="IBUITableViewCellStyleDefault" id="3MI-J3-Vfd">
                                         <rect key="frame" x="0.0" y="264" width="600" height="100"/>
@@ -109,6 +112,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pB0-WW-Igx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="884" y="1"/>
+        </scene>
+        <!--AddPoll_Movie-->
+        <scene sceneID="6tn-Y0-9jY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddPoll_Movie" id="vRV-TE-mZD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exh-bg-yeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1059.5" y="473"/>
         </scene>
         <!--New Decision-->
         <scene sceneID="1Ek-Qt-dYa">
