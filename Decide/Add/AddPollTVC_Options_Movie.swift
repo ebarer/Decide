@@ -54,7 +54,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
             html = nil
         }
         //print(html)
-        print("http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))
+        //print("http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))
         
         // NOW PARSE IT
         var html_parse = html!.componentsSeparatedByString("<div class=theater>")
@@ -68,7 +68,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
                 
                 // Retrieve Theater Name
                 var theatername = (theater.componentsSeparatedByString("<h2 class=name>")[1]).componentsSeparatedByString("</h2>")[0]
-                print(theatername)
+                theatername = (theatername.componentsSeparatedByString(">")[1]).componentsSeparatedByString("</a")[0]
                 // seperate movie info
                 var movies = theater.componentsSeparatedByString("<div class=movie>")
                 let theaterinfo = movies.removeAtIndex(0)
@@ -76,6 +76,9 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
                     var flag = false
                     var title = movie.componentsSeparatedByString("<span class=info>")[0]
                     title = (title.componentsSeparatedByString(">")[2]).componentsSeparatedByString("<")[0]
+                    if title.rangeOfString("&#39;") != nil{
+                        title = title.componentsSeparatedByString("&#39;")[0] + "'" + title.componentsSeparatedByString("&#39;")[1]
+                    }
                     for eachMovie in newPoll.movieOptions{
                         if title == eachMovie.title{
                             // already populated. add location/time data
@@ -109,8 +112,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
                             
                         newPoll.movieOptions.append(Movie(title: title, imdbRating: 0.0, length: length, genre: "", locationsAndTimes: [(theatername, timearray)], plot: "", poster: "", movieRating: rated))
                         newPoll.movieOptions.last?.getMovieInfo()
-                            
-                        print(newPoll.movieOptions)
+                        
                     }
                 }
             }
