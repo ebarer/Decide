@@ -17,6 +17,6 @@ class LoginController < ApplicationController
     #else
     # If save fails, redisplay the form so user can fix problems
       #redirect_to(:action => 'index')
-  	end 
+  	#end 
   end
 end
