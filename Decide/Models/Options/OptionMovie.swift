@@ -10,12 +10,7 @@ import Foundation
 import MapKit
 
 class Movie: Option {
-<<<<<<< HEAD
-    // location and times from google,
-    // others from imdb
-=======
 
->>>>>>> master
     var imdbRating: Float?
     var length: String?
     var genre: String?
@@ -24,16 +19,10 @@ class Movie: Option {
     var plot: String?
     var poster: String?
     var movieRating: String?
-    
-<<<<<<< HEAD
-    convenience init(withUID uid: Int, fk_uid: Int, title: String, imdbRating: Float, length: String, genre: String, times: [NSDate], location: String, plot: String, poster: String, movieRating: String) {
-        self.init(withUID: uid, fk_uid: fk_uid, title: title)
-=======
+
     convenience init(title: String, imdbRating: Float, length: String, genre: String, times: [NSDate],
                      location: String, plot: String, poster: String, movieRating: String) {
         self.init(title: title)
-
->>>>>>> master
         
         self.imdbRating = imdbRating
         self.length = length

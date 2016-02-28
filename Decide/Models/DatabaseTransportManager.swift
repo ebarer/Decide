@@ -35,7 +35,7 @@ class DatabaseTransportManager: NSObject {
                             return (true, json)
                         })
                     }
-                } catch let error as HTMLError {
+                } catch let error as DTMError {
                     print(error.rawValue)
                 } catch {
                     print(error)
