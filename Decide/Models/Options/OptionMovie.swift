@@ -86,9 +86,3 @@ class Movie: Option {
 //        }
 //    }
 //}
-
-enum HTMLError: String, ErrorType {
-    case NoData = "-E- No data"
-    case ConversionFailed = "-E- Conversion from JSON failed"
-    case NoReturnArray = "-E- No array returned"
-}
