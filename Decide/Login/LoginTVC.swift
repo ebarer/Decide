@@ -42,10 +42,6 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDel
 //                }
 //            }
 //        }
-        
-        let test = Movie(title: "Deadpool")
-        test.getMovieInfo()
-        test.scrapeMoviesNearMe()
     }
     
     override func didReceiveMemoryWarning() {
