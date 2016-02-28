@@ -1,32 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ywH-gs-tw5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xOK-15-54o">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="JSR-pY-BP5">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ywH-gs-tw5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ESQ-pa-fq2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xOK-15-54o" kind="relationship" relationship="rootViewController" id="UeY-1c-tne"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xv9-1Z-78f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="146" y="1"/>
-        </scene>
         <!--New Decision-->
         <scene sceneID="1Ek-Qt-dYa">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XnA-wA-aWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="xOK-15-54o" customClass="AddPollTVC_Movie" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="bv6-hw-ceH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -36,7 +19,7 @@
                             <tableViewSection id="iny-xL-TDq" userLabel="General">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="60" id="XUc-gd-bkS">
-                                        <rect key="frame" x="0.0" y="99" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="35" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="XUc-gd-bkS" id="e6O-PI-nnp">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
@@ -80,7 +63,6 @@
                         <outlet property="pollTitleTextField" destination="apS-Jd-kF5" id="ZGd-nw-sng"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XnA-wA-aWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1615" y="1"/>
         </scene>
@@ -94,7 +76,7 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addCell" rowHeight="60" id="XlG-VI-xVY" customClass="AddPollTVC_Options_AddCell" customModule="Decide_With_Friends" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="49.5" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="XlG-VI-xVY" id="hF4-8u-BN9">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
@@ -120,7 +102,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="optionCell" textLabel="lEh-hd-Kbk" style="IBUITableViewCellStyleDefault" id="a1w-9G-QTo">
-                                <rect key="frame" x="0.0" y="173.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="109.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="a1w-9G-QTo" id="V3F-dP-Bwg">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -135,6 +117,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="3V4-XL-vAV" kind="show" identifier="showMovieDetails" action="showDetailViewController:sender:" id="TSB-fA-Z5t"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -159,6 +144,55 @@
             </objects>
             <point key="canvasLocation" x="2351" y="1"/>
         </scene>
+        <!--Movie Details-->
+        <scene sceneID="QJF-yO-EOl">
+            <objects>
+                <viewController id="UdF-u0-Mbn" customClass="AddPollVC_TheatersAndTimes_Movie" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nCQ-rZ-h0W"/>
+                        <viewControllerLayoutGuide type="bottom" id="PAC-Yd-FlY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sk3-DC-JOS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6V-em-OkJ">
+                                <rect key="frame" x="279" y="289" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="leu-ZG-tEZ">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Showtimes" id="Lao-aE-NVK"/>
+                                    <tabBarItem title="Trailer" id="uVA-64-EFm"/>
+                                    <tabBarItem title="Info" id="Gsq-2k-s2Q"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="f6V-em-OkJ" firstAttribute="centerY" secondItem="Sk3-DC-JOS" secondAttribute="centerY" id="MMC-tV-N8N"/>
+                            <constraint firstItem="f6V-em-OkJ" firstAttribute="centerX" secondItem="Sk3-DC-JOS" secondAttribute="centerX" id="OHO-0n-Qn1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Movie Details" id="y2J-8y-pgk">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="dDm-P3-GD4">
+                            <connections>
+                                <action selector="dismissDetails:" destination="UdF-u0-Mbn" id="qOb-Lk-w6i"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pollTitle" destination="f6V-em-OkJ" id="Jh7-jw-Oo0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pfJ-P3-eNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3537" y="800"/>
+        </scene>
         <!--Invite Friends-->
         <scene sceneID="9DY-no-qzc">
             <objects>
@@ -169,7 +203,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendCell" textLabel="I2I-5H-qDA" rowHeight="60" style="IBUITableViewCellStyleDefault" id="X2Y-lv-TFQ">
-                                <rect key="frame" x="0.0" y="92" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="X2Y-lv-TFQ" id="Qnd-Vy-ycs">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
@@ -200,6 +234,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvs-H4-y3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3091" y="1"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NAp-FV-2jY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3V4-XL-vAV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="goM-Gq-y2Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UdF-u0-Mbn" kind="relationship" relationship="rootViewController" id="oc4-ys-7gA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vam-kj-YAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2725" y="800"/>
         </scene>
     </scenes>
 </document>

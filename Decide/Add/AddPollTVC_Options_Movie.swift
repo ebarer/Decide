@@ -16,7 +16,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.editing = true
+        self.tableView.editing = false
         
         if newPoll.movieOptions.count > 1 {
             nextButton.enabled = false
@@ -215,6 +215,16 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
         if segue.identifier == "inviteFriends" {
             if let vc = segue.destinationViewController as? AddPollTVC_InviteFriends_Movie {
                 vc.newPoll = newPoll
+            }
+        }
+        
+        if segue.identifier == "showMovieDetails" {
+            if let vc = segue.destinationViewController.childViewControllers[0] as? AddPollVC_TheatersAndTimes_Movie {
+                if let cell = sender as? UITableViewCell {
+                    if let index = self.tableView.indexPathForCell(cell) {
+                        vc.movie = newPoll.movieOptions[index.row]
+                    }
+                }
             }
         }
     }

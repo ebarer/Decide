@@ -15,6 +15,7 @@
 		891876F31C82FE8200377731 /* PollTypeTVC_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876EC1C82FE8200377731 /* PollTypeTVC_Movie.swift */; };
 		891876F41C82FE8200377731 /* PollTypeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876ED1C82FE8200377731 /* PollTypeTVC.swift */; };
 		891876F61C82FF1E00377731 /* PollMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876F51C82FF1E00377731 /* PollMovie.swift */; };
+		92C4E0191C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C4E0181C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift */; };
 		CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0469221C828DC4004BC11F /* LoginManager.swift */; };
 		CE0C1DBB1C82AFFF007468EC /* DatabaseTransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */; };
 		CE64F2DD1C82E7280004A5F8 /* AddPoll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE64F2D91C82E7280004A5F8 /* AddPoll.storyboard */; };
@@ -47,6 +48,7 @@
 		891876EC1C82FE8200377731 /* PollTypeTVC_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollTypeTVC_Movie.swift; path = Add/PollTypeTVC_Movie.swift; sourceTree = "<group>"; };
 		891876ED1C82FE8200377731 /* PollTypeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollTypeTVC.swift; path = Add/PollTypeTVC.swift; sourceTree = "<group>"; };
 		891876F51C82FF1E00377731 /* PollMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollMovie.swift; path = Models/Polls/PollMovie.swift; sourceTree = "<group>"; };
+		92C4E0181C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollVC_TheatersAndTimes_Movie.swift; path = Add/AddPollVC_TheatersAndTimes_Movie.swift; sourceTree = "<group>"; };
 		CE0469221C828DC4004BC11F /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginManager.swift; path = Login/LoginManager.swift; sourceTree = "<group>"; };
 		CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseTransportManager.swift; path = Models/DatabaseTransportManager.swift; sourceTree = "<group>"; };
 		CE64F2D91C82E7280004A5F8 /* AddPoll.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddPoll.storyboard; path = Add/AddPoll.storyboard; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				CEFBA8B71C82F48D00562664 /* AddPollTVC_InviteFriends.swift */,
 				CE64F2DA1C82E7280004A5F8 /* AddPollTVC_Options.swift */,
 				891876E71C82FE8200377731 /* AddPoll_Movie.storyboard */,
+				92C4E0181C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift */,
 				891876EC1C82FE8200377731 /* PollTypeTVC_Movie.swift */,
 				891876E91C82FE8200377731 /* AddPollTVC_Movie.swift */,
 				891876EA1C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift */,
@@ -229,7 +232,7 @@
 				TargetAttributes = {
 					CEB0499E1C82887400AD0D55 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 5ZJB9DN7AQ;
+						DevelopmentTeam = DN965HC5CF;
 					};
 				};
 			};
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92C4E0191C83352600B9171D /* AddPollVC_TheatersAndTimes_Movie.swift in Sources */,
 				CEB049BF1C8288ED00AD0D55 /* Users.swift in Sources */,
 				891876F61C82FF1E00377731 /* PollMovie.swift in Sources */,
 				CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */,
