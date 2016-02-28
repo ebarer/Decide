@@ -7,7 +7,7 @@ class LoginController < ApplicationController
       if User.exists?(id: params[:pk_uid])
         @user = User.find(params[:pk_uid])
         render :json => {:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :profile_picture => @user.profile_picture,
-          :polls => @user.polls}
+          :polls => @user.user_polls}
       else
         render :json => '{"Error" : "-1", "Error_msg" : "User does not exist"}'
       end
