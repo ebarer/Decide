@@ -7,11 +7,53 @@
 //
 
 import UIKit
+import CoreLocation
 
 class Poll: NSObject {
     
     var pk_uid: Int?
     var title: String
+<<<<<<< HEAD
+    var optionIds = [Int]()
+    var winningOptionId: Int
+    var isEnded: Bool = false
+    var theme: PollType
+    var latitude: Double
+    var longitude: Double
+    
+    init(withUID uid: Int, title: String, optionIds: [Int], winningOptionId: Int, isEnded: Bool = false, theme: PollType, latitude: Double, longitude: Double) {
+        self.pk_uid = uid
+        self.title = title
+        self.optionIds = optionIds
+        self.winningOptionId = winningOptionId
+        self.isEnded = isEnded
+        self.theme = theme
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    func populateNearbyMovies() {
+        print(self.theme)
+        print(self.latitude)
+        print(self.longitude)
+    }
+    
+}
+
+//MARK: - PollType Enum
+enum PollType {
+    case General
+    case Movie
+    case Restaurant
+
+    var description: String {
+        switch self {
+        case .General: return "General"
+        case .Movie: return "Movie"
+        case .Restaurant: return "Restaurant"
+        }
+    }
+=======
     var isEnded: Bool = false
     var options = [Option]()
     
@@ -48,4 +90,5 @@ class Poll: NSObject {
     }
     
     
+>>>>>>> master
 }

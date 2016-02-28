@@ -10,9 +10,12 @@ import UIKit
 import Accounts
 import FBSDKCoreKit
 import FBSDKLoginKit
+import CoreLocation
 
-class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
+class LoginTVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDelegate {
 
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -27,6 +30,22 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
             self.view.addSubview(loginButton)
         }
         
+<<<<<<< HEAD
+        // Set up location services
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        //Keep this optional check, optional will have nil at first call otherwise and will throw error
+        if let latitude = locationManager.location?.coordinate.latitude {
+            let test = Poll(withUID: 1002,  title: "Alivepool", optionIds: [1,2,3], winningOptionId: 1003, theme: PollType.Movie, latitude: latitude, longitude: locationManager.location!.coordinate.longitude)
+        
+            test.populateNearbyMovies()
+        }
+        
+    
+=======
 <<<<<<< HEAD
         let test = Movie(withUID: 1001, fk_uid: 1002, title: "Deadpool")
         test.getMovieInfo()
@@ -44,6 +63,7 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
 //                }
 //            }
 //        }
+>>>>>>> master
 >>>>>>> master
     }
     
@@ -89,5 +109,8 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(segue.destinationViewController)
     }
+ 
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
 
+    }
 }
