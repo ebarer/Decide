@@ -16,7 +16,7 @@ class Restaurant: Option {
     var imageURL: String?
     
     convenience init(withUID uid: Int, fk_uid: Int, title: String, cuisine: String, address: String, hours: (Int, Int), yelpRating: Float, imageURL: String) {
-        self.init(withUID: uid, fk_uid: fk_uid, title: title)
+        self.init(title: title)
         
         self.cuisine = cuisine
         self.address = address

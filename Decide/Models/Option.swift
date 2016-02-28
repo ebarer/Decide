@@ -8,15 +8,14 @@
 
 import UIKit
 
-class Option:NSObject {
-    let pk_uid: Int
-    let fk_uid: Int
+class Option: NSObject {
+    
+    var pk_uid: Int?
+    var fk_uid: Int?
     var title: String
     var votes: (count: Int, users:[User]) = (0, []) //Elliot: handle case for count<0
     
-    init(withUID uid: Int, fk_uid: Int, title: String) {
-        self.pk_uid = uid
-        self.fk_uid = fk_uid
+    init(title: String) {
         self.title = title
     }
     
