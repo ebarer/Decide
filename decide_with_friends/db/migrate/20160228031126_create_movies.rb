@@ -1,7 +1,7 @@
 class CreateMovies < ActiveRecord::Migration
-  def change
+  def up
     create_table :movies do |t|
-   	  t.references :option
+   	  t.integer "option_id"
    	  t.float "rating"
    	  t.string "length"
    	  t.string "genre"
@@ -12,6 +12,10 @@ class CreateMovies < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+  end
+
+  def down
+    drop_table :movies
   end
 end
 

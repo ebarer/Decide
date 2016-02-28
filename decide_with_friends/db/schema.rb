@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20160228031126) do
 
   create_table "movies", force: :cascade do |t|
     t.integer  "option_id"
+    t.float    "rating"
+    t.string   "length"
+    t.string   "genre"
+    t.datetime "times"
+    t.string   "location"
+    t.string   "plot"
+    t.string   "poster"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160228031126) do
 
   create_table "polls", force: :cascade do |t|
     t.string   "title"
-    t.string   "type"
+    t.boolean  "isEnded",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,13 +65,13 @@ ActiveRecord::Schema.define(version: 20160228031126) do
   add_index "user_polls", ["user_id", "poll_id"], name: "index_user_polls_on_user_id_and_poll_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.integer  "fb_id",          limit: 8
-    t.string   "profilePicture"
-    t.string   "first_name",     limit: 50,              null: false
-    t.string   "last_name",      limit: 50,              null: false
-    t.string   "email",          limit: 50, default: "", null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "fb_id"
+    t.string   "profile_picture"
+    t.string   "first_name",      limit: 50,              null: false
+    t.string   "last_name",       limit: 50,              null: false
+    t.string   "email",           limit: 50, default: "", null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
 end

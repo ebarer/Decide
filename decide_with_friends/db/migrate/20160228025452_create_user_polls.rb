@@ -1,8 +1,8 @@
 class CreateUserPolls < ActiveRecord::Migration
   def up
     create_table :user_polls do |t|
-      t.references :user
-      t.references :poll
+      t.integer "user_id"
+      t.integer "poll_id"
       t.boolean "admin", :default => false
 
       t.timestamps

@@ -1,4 +1,8 @@
 class PollController < ApplicationController
+  protect_from_forgery with: :null_session
+  
+  layout false
+  
   def index
     @polls = Poll.all
   end

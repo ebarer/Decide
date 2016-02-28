@@ -1,8 +1,8 @@
 class CreateUsers < ActiveRecord::Migration
   def up
     create_table :users do |t|
-      t.bigint "fb_id"
-      t.string "profilePicture"
+      t.integer "fb_id"
+      t.string "profile_picture"
       t.string "first_name", :limit => 50, :null => false
       t.string "last_name", :limit => 50, :null => false
       t.string "email", :default => "", :limit => 50, :null => false
