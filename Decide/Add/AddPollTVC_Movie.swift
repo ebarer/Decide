@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import CoreLocation
 
-class AddPollTVC_Movie: UITableViewController, UITextFieldDelegate {
+class AddPollTVC_Movie: UITableViewController, UITextFieldDelegate, CLLocationManagerDelegate {
 
     var newPoll: MoviePoll!
+    var locationManager: CLLocationManager!
     
     @IBOutlet var nextButton: UIBarButtonItem!
     @IBOutlet var pollTitleTextField: UITextField!
     
     required init?(coder aDecoder: NSCoder) {
-        newPoll = Poll(title: "")
+        newPoll = MoviePoll(title: "")
         super.init(coder: aDecoder)
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        
     }
     
     override func viewDidLoad() {
@@ -26,6 +32,18 @@ class AddPollTVC_Movie: UITableViewController, UITextFieldDelegate {
         if newPoll.title.isEmpty {
             nextButton.enabled = false
         }
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        //Keep this optional check, optional will have nil at first call otherwise and will throw error
+        if let latitude = locationManager.location?.coordinate.latitude {
+            //send lat and long to a movie poll
+            newPoll.latitude = latitude
+            newPoll.longitude = (locationManager.location?.coordinate.longitude)!
+        }
+        
     }
     
     override func viewDidAppear(animated: Bool) {

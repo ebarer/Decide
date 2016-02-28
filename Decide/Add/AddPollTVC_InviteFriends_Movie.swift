@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddPollTVC_InviteFriends: UITableViewController {
+class AddPollTVC_InviteFriends_Movie: UITableViewController {
     
-    var newPoll: Poll!
+    var newPoll: MoviePoll!
 
     override func viewDidLoad() {
         super.viewDidLoad()

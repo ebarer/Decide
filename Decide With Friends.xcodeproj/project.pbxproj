@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		891876EE1C82FE8200377731 /* AddPoll_Movie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 891876E71C82FE8200377731 /* AddPoll_Movie.storyboard */; };
+		891876EF1C82FE8200377731 /* AddPollTVC_InviteFriends_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876E81C82FE8200377731 /* AddPollTVC_InviteFriends_Movie.swift */; };
+		891876F01C82FE8200377731 /* AddPollTVC_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876E91C82FE8200377731 /* AddPollTVC_Movie.swift */; };
+		891876F11C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876EA1C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift */; };
+		891876F21C82FE8200377731 /* AddPollTVC_Options_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876EB1C82FE8200377731 /* AddPollTVC_Options_Movie.swift */; };
+		891876F31C82FE8200377731 /* PollTypeTVC_Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876EC1C82FE8200377731 /* PollTypeTVC_Movie.swift */; };
+		891876F41C82FE8200377731 /* PollTypeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876ED1C82FE8200377731 /* PollTypeTVC.swift */; };
+		891876F61C82FF1E00377731 /* PollMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891876F51C82FF1E00377731 /* PollMovie.swift */; };
 		CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0469221C828DC4004BC11F /* LoginManager.swift */; };
 		CE0C1DBB1C82AFFF007468EC /* DatabaseTransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */; };
 		CE64F2DD1C82E7280004A5F8 /* AddPoll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE64F2D91C82E7280004A5F8 /* AddPoll.storyboard */; };
 		CE64F2DE1C82E7280004A5F8 /* AddPollTVC_Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64F2DA1C82E7280004A5F8 /* AddPollTVC_Options.swift */; };
 		CE64F2DF1C82E7280004A5F8 /* AddPollTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64F2DB1C82E7280004A5F8 /* AddPollTVC.swift */; };
-		CE64F2E01C82E7280004A5F8 /* PollTypeTVC.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64F2DC1C82E7280004A5F8 /* PollTypeTVC.swift.swift */; };
 		CEB049A31C82887400AD0D55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB049A21C82887400AD0D55 /* AppDelegate.swift */; };
 		CEB049AA1C82887400AD0D55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB049A91C82887400AD0D55 /* Assets.xcassets */; };
 		CEB049AD1C82887400AD0D55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB049AB1C82887400AD0D55 /* LaunchScreen.storyboard */; };
@@ -32,12 +39,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		891876E71C82FE8200377731 /* AddPoll_Movie.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddPoll_Movie.storyboard; path = Add/AddPoll_Movie.storyboard; sourceTree = "<group>"; };
+		891876E81C82FE8200377731 /* AddPollTVC_InviteFriends_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_InviteFriends_Movie.swift; path = Add/AddPollTVC_InviteFriends_Movie.swift; sourceTree = "<group>"; };
+		891876E91C82FE8200377731 /* AddPollTVC_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_Movie.swift; path = Add/AddPollTVC_Movie.swift; sourceTree = "<group>"; };
+		891876EA1C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_Options_AddCell_Movie.swift; path = Add/AddPollTVC_Options_AddCell_Movie.swift; sourceTree = "<group>"; };
+		891876EB1C82FE8200377731 /* AddPollTVC_Options_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_Options_Movie.swift; path = Add/AddPollTVC_Options_Movie.swift; sourceTree = "<group>"; };
+		891876EC1C82FE8200377731 /* PollTypeTVC_Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollTypeTVC_Movie.swift; path = Add/PollTypeTVC_Movie.swift; sourceTree = "<group>"; };
+		891876ED1C82FE8200377731 /* PollTypeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollTypeTVC.swift; path = Add/PollTypeTVC.swift; sourceTree = "<group>"; };
+		891876F51C82FF1E00377731 /* PollMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollMovie.swift; path = Models/Polls/PollMovie.swift; sourceTree = "<group>"; };
 		CE0469221C828DC4004BC11F /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginManager.swift; path = Login/LoginManager.swift; sourceTree = "<group>"; };
 		CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseTransportManager.swift; path = Models/DatabaseTransportManager.swift; sourceTree = "<group>"; };
 		CE64F2D91C82E7280004A5F8 /* AddPoll.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddPoll.storyboard; path = Add/AddPoll.storyboard; sourceTree = "<group>"; };
 		CE64F2DA1C82E7280004A5F8 /* AddPollTVC_Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC_Options.swift; path = Add/AddPollTVC_Options.swift; sourceTree = "<group>"; };
 		CE64F2DB1C82E7280004A5F8 /* AddPollTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddPollTVC.swift; path = Add/AddPollTVC.swift; sourceTree = "<group>"; };
-		CE64F2DC1C82E7280004A5F8 /* PollTypeTVC.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollTypeTVC.swift.swift; path = Add/PollTypeTVC.swift.swift; sourceTree = "<group>"; };
 		CEB0499F1C82887400AD0D55 /* Decide With Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Decide With Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB049A21C82887400AD0D55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB049A91C82887400AD0D55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,15 +87,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		891876F71C82FF2500377731 /* Polls */ = {
+			isa = PBXGroup;
+			children = (
+				891876F51C82FF1E00377731 /* PollMovie.swift */,
+			);
+			name = Polls;
+			sourceTree = "<group>";
+		};
 		CE64F2E11C82E72E0004A5F8 /* Add */ = {
 			isa = PBXGroup;
 			children = (
 				CE64F2D91C82E7280004A5F8 /* AddPoll.storyboard */,
-				CE64F2DC1C82E7280004A5F8 /* PollTypeTVC.swift.swift */,
+				891876ED1C82FE8200377731 /* PollTypeTVC.swift */,
 				CE64F2DB1C82E7280004A5F8 /* AddPollTVC.swift */,
-				CE64F2DA1C82E7280004A5F8 /* AddPollTVC_Options.swift */,
 				CEFBA8B31C82F12F00562664 /* AddPollTVC_Options_AddCell.swift */,
 				CEFBA8B71C82F48D00562664 /* AddPollTVC_InviteFriends.swift */,
+				CE64F2DA1C82E7280004A5F8 /* AddPollTVC_Options.swift */,
+				891876E71C82FE8200377731 /* AddPoll_Movie.storyboard */,
+				891876EC1C82FE8200377731 /* PollTypeTVC_Movie.swift */,
+				891876E91C82FE8200377731 /* AddPollTVC_Movie.swift */,
+				891876EA1C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift */,
+				891876E81C82FE8200377731 /* AddPollTVC_InviteFriends_Movie.swift */,
+				891876EB1C82FE8200377731 /* AddPollTVC_Options_Movie.swift */,
 			);
 			name = Add;
 			sourceTree = "<group>";
@@ -142,6 +170,7 @@
 				CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */,
 				CEB049BB1C8288ED00AD0D55 /* Users.swift */,
 				CEB049BA1C8288ED00AD0D55 /* Poll.swift */,
+				891876F71C82FF2500377731 /* Polls */,
 				CEB049B91C8288ED00AD0D55 /* Option.swift */,
 				CEB049C51C82890600AD0D55 /* Options */,
 			);
@@ -231,6 +260,7 @@
 				CE64F2DD1C82E7280004A5F8 /* AddPoll.storyboard in Resources */,
 				CEB049AD1C82887400AD0D55 /* LaunchScreen.storyboard in Resources */,
 				CEB049AA1C82887400AD0D55 /* Assets.xcassets in Resources */,
+				891876EE1C82FE8200377731 /* AddPoll_Movie.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB049BF1C8288ED00AD0D55 /* Users.swift in Sources */,
+				891876F61C82FF1E00377731 /* PollMovie.swift in Sources */,
 				CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */,
 				CEB049C91C82894600AD0D55 /* LoginTVC.swift in Sources */,
 				CE64F2DF1C82E7280004A5F8 /* AddPollTVC.swift in Sources */,
@@ -249,12 +280,17 @@
 				CEFBA8BA1C82F6EB00562664 /* MainTBC.swift in Sources */,
 				CEB049BD1C8288ED00AD0D55 /* Option.swift in Sources */,
 				CEFBA8B41C82F12F00562664 /* AddPollTVC_Options_AddCell.swift in Sources */,
+				891876F21C82FE8200377731 /* AddPollTVC_Options_Movie.swift in Sources */,
+				891876F11C82FE8200377731 /* AddPollTVC_Options_AddCell_Movie.swift in Sources */,
 				CEB049BE1C8288ED00AD0D55 /* Poll.swift in Sources */,
 				CEB049C21C8288F700AD0D55 /* OptionMovie.swift in Sources */,
+				891876EF1C82FE8200377731 /* AddPollTVC_InviteFriends_Movie.swift in Sources */,
 				CE0C1DBB1C82AFFF007468EC /* DatabaseTransportManager.swift in Sources */,
 				CEB049A31C82887400AD0D55 /* AppDelegate.swift in Sources */,
+				891876F31C82FE8200377731 /* PollTypeTVC_Movie.swift in Sources */,
+				891876F01C82FE8200377731 /* AddPollTVC_Movie.swift in Sources */,
 				CE64F2DE1C82E7280004A5F8 /* AddPollTVC_Options.swift in Sources */,
-				CE64F2E01C82E7280004A5F8 /* PollTypeTVC.swift.swift in Sources */,
+				891876F41C82FE8200377731 /* PollTypeTVC.swift in Sources */,
 				CEFBA8B81C82F48D00562664 /* AddPollTVC_InviteFriends.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

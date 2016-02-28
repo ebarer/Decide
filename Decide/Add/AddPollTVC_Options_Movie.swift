@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
+class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
     
-    var newPoll: Poll!
+    var newPoll: MoviePoll!
     
     @IBOutlet var nextButton: UIBarButtonItem!
     
@@ -27,8 +27,8 @@ class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         if let addCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) {
-            if addCell.isKindOfClass(AddPollTVC_Options_AddCell) {
-                (addCell as! AddPollTVC_Options_AddCell).addOptionTextField.becomeFirstResponder()
+            if addCell.isKindOfClass(AddPollTVC_Options_AddCell_Movie) {
+                (addCell as! AddPollTVC_Options_AddCell_Movie).addOptionTextField.becomeFirstResponder()
             }
         }
     }
@@ -130,7 +130,7 @@ class AddPollTVC_Options: UITableViewController, UITextFieldDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "inviteFriends" {
-            if let vc = segue.destinationViewController as? AddPollTVC_InviteFriends {
+            if let vc = segue.destinationViewController as? AddPollTVC_InviteFriends_Movie {
                 vc.newPoll = newPoll
             }
         }

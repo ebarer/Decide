@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddPollTVC_Options_AddCell: UITableViewCell {
+class AddPollTVC_Options_AddCell_Movie: UITableViewCell {
 
     @IBOutlet var addOptionTextField: UITextField!
     
