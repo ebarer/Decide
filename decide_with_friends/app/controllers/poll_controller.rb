@@ -16,18 +16,17 @@ class PollController < ApplicationController
   end
   
   def create
-    @poll = Poll.new(poll_params)
-    
-    if (params[:option_ids])
-      params[:options].each do |option|
-        @Poll.options << Option.create(option)
-      end
-    end
+    @poll = Poll.new(params.permit(:title, :isEnded))
 
     if @poll.save
-      redirect_to :action => index
+      if (params[:options])
+        params[:options].each do |option|
+          @Poll.options << Option.create(:title => option.title)
+        end
+      end
+      render :json @poll.id
     else
-      render 'new'
+      render :json => '{"Error" : "53", "Error_msg" : "Error saving to database"}'
     end
   end
     

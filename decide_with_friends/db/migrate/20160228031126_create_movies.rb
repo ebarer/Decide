@@ -7,7 +7,7 @@ class CreateMovies < ActiveRecord::Migration
    	  t.string "genre"
    	  t.datetime "times"
    	  t.string "location"
-   	  t.string "plot"
+   	  t.text "plot"
    	  t.string "poster"
 
       t.timestamps null: false
