@@ -113,7 +113,7 @@
         <!--New Decision-->
         <scene sceneID="1Ek-Qt-dYa">
             <objects>
-                <tableViewController id="xOK-15-54o" customClass="AddPollTVC" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xOK-15-54o" customClass="AddPollTVC_Movie" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="bv6-hw-ceH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,7 +173,7 @@
         <!--Add Options-->
         <scene sceneID="nTF-LD-CYa">
             <objects>
-                <tableViewController id="pkl-Rx-d1n" customClass="AddPollTVC_Options" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="pkl-Rx-d1n" customClass="AddPollTVC_Options_Movie" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="dWS-tS-Vkt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

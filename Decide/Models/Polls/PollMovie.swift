@@ -12,11 +12,17 @@ import CoreLocation
 class MoviePoll: Poll {
     var latitude: Double = 0.0
     var longitude: Double = 0.0
+    var movieOptions = [Movie]()
     
-    convenience init(title: String, latitude: Double, longitude: Double) {
+    convenience init(title: String, latitude: Double, longitude: Double, movieOptions:[Movie]) {
         self.init(title: title)
         self.latitude = latitude
         self.longitude = longitude
+        self.movieOptions = movieOptions
+    }
+    
+    override func addOption(newOption: Option) {
+        self.movieOptions.append(newOption as! Movie)
     }
 }
 

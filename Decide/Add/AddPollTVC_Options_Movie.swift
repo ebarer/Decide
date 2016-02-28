@@ -18,11 +18,13 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.tableView.editing = true
         
-        if newPoll.options.count > 1 {
+        if newPoll.movieOptions.count > 1 {
             nextButton.enabled = false
         } else {
             nextButton.enabled = false
         }
+        
+        scrapeMoviesNearMe()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -35,6 +37,88 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // Google Scrape Method
+    func scrapeMoviesNearMe() {
+        // lat = latitude
+        // long = longitude
+        
+        let lat = 49.5
+        let long = 123.2
+        
+        let html: String?
+        do {
+            html = try String(contentsOfURL: NSURL(string: "http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))!, encoding: NSASCIIStringEncoding)
+        } catch _ {
+            html = nil
+        }
+        //print(html)
+        print("http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))
+        
+        // NOW PARSE IT
+        var html_parse = html!.componentsSeparatedByString("<div class=theater>")
+        html_parse.removeAtIndex(0) // doesnt have movie info
+        for theater in html_parse{
+            if theater.rangeOfString("<span class=closure>") != nil {
+                // theater hase no showtimes. remove from array
+                html_parse.removeObject(theater)
+            }
+            else{//theater has showtimes. Add to Array of movie objects
+                
+                // Retrieve Theater Name
+                //PASS
+                
+                //For temp, find Scotiabank Theatre Vancouver
+                if theater.rangeOfString("Scotiabank Theatre Vancouver") != nil{
+                    // seperate movie info
+                    var movies = theater.componentsSeparatedByString("<div class=movie>")
+                    let theaterinfo = movies.removeAtIndex(0)
+                    for movie in movies{
+                        var flag = false
+                        var title = movie.componentsSeparatedByString("<span class=info>")[0]
+                        title = (title.componentsSeparatedByString(">")[2]).componentsSeparatedByString("<")[0]
+                        for eachMovie in newPoll.movieOptions{
+                            if title == eachMovie.title{
+                                // already populated. add location/time data
+                                flag = true
+                                var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
+                                times.removeAtIndex(0)
+                                var timearray: [String] = []
+                                for time in times{
+                                    timearray.append(time.componentsSeparatedByString("</span>")[0])
+                                }
+                                eachMovie.locationsAndTimes?.append(("Scotiabank Theatre Vancouver", timearray))
+                            }
+                        }
+                        if flag == false {
+                            // movie wasn't found. Append and populate new object
+                            let info = (movie.componentsSeparatedByString("<span class=info>")[1]).componentsSeparatedByString("<a href")[0]
+                            let length = info.componentsSeparatedByString(" -")[0]
+                            var rated : String
+                            if info.rangeOfString("Rated") != nil{
+                                rated = (info.componentsSeparatedByString("Rated ")[1]).componentsSeparatedByString(" -")[0]
+                            }
+                            else{
+                                rated = ""
+                            }
+                            var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
+                            times.removeAtIndex(0)
+                            var timearray: [String] = []
+                            for time in times{
+                                timearray.append(time.componentsSeparatedByString("</span>")[0])
+                            }
+                            
+                            newPoll.movieOptions.append(Movie(title: title, imdbRating: 0.0, length: length, genre: "", locationsAndTimes: [("Scotiabank Theatre Vancouver", timearray)], plot: "", poster: "", movieRating: rated))
+                            newPoll.movieOptions.last?.getMovieInfo()
+                            
+                            print(newPoll.movieOptions)
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 
     
@@ -61,7 +145,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (section == 0) ? 1 : newPoll.options.count
+        return (section == 0) ? 1 : newPoll.movieOptions.count
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -73,7 +157,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
         
         if indexPath.section == 1 {
-            cell.textLabel?.text = newPoll.options[indexPath.row].title
+            cell.textLabel?.text = newPoll.movieOptions[indexPath.row].title
         }
         
         return cell
@@ -85,10 +169,10 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            newPoll.options.removeAtIndex(indexPath.row)
+            newPoll.movieOptions.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
-            if newPoll.options.count > 1 {
+            if newPoll.movieOptions.count > 1 {
                 nextButton.enabled = true
             } else {
                 nextButton.enabled = false
@@ -104,12 +188,12 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
         let count = tableView.numberOfRowsInSection(1)
         
         if let title = textField.text where !title.isEmpty {
-            let newOption = Option(title: title)
+            let newOption = Movie(title: title)
             newPoll.addOption(newOption)
             
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: count, inSection: 1)], withRowAnimation: .Automatic)
             
-            if newPoll.options.count > 1 {
+            if newPoll.movieOptions.count > 1 {
                 nextButton.enabled = true
             } else {
                 nextButton.enabled = false
