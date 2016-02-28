@@ -21,6 +21,9 @@ class PollController < ApplicationController
     if @poll.save
 
       options = ActiveSupport::JSON.decode(params[:options])
+      @user = User.find(params[:admin])
+
+      @user.polls << @poll
 
       if (options)
         options.each do |option|
