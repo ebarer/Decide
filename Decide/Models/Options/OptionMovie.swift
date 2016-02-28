@@ -69,12 +69,16 @@ class Movie: Option {
                     var movies = theater.componentsSeparatedByString("<div class=movie>")
                     var theaterinfo = movies.removeAtIndex(0)
                     for movie in movies{
-                        var title = movie.componentsSeparatedByString("<span class=info>")[0] //<div class=name><a href=\"/movies?mid=7b17035926c6c3bb\">Kung Fu Panda 3 3D</a></div>
+                        var title = movie.componentsSeparatedByString("<span class=info>")[0]
                         title = (title.componentsSeparatedByString(">")[2]).componentsSeparatedByString("<")[0]
                         print(title)
                         var info = (movie.componentsSeparatedByString("<span class=info>")[1]).componentsSeparatedByString("<a href")[0]
-                        print(info) // TO DO parse further
                         var length = info.componentsSeparatedByString(" -")[0]
+                        print(length)
+                        if info.rangeOfString("Rated") != nil{
+                            var rated = (info.componentsSeparatedByString("Rated ")[1]).componentsSeparatedByString(" -")[0]
+                            print(rated)
+                        }
                         var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
                         times.removeAtIndex(0)
                         var timearray: [String] = []

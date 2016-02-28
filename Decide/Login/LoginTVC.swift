@@ -27,6 +27,10 @@ class LoginTVC: UIViewController, FBSDKLoginButtonDelegate {
             loginButton.center = self.view.center
             self.view.addSubview(loginButton)
         }
+        
+        let test = Movie(withUID: 1001, fk_uid: 1002, title: "Deadpool")
+        test.getMovieInfo()
+        test.scrapeMoviesNearMe()
     }
 
     override func didReceiveMemoryWarning() {
