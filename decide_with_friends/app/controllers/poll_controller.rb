@@ -22,14 +22,8 @@ class PollController < ApplicationController
 
       options = ActiveSupport::JSON.decode(params[:options])
       @user = User.find(params[:admin])
-      fbusers = ActiveSupport::JSON.decode(params[:users])
 
       @user.polls << @poll
-
-      if (fbusers) do |fbuser|
-        @fuser = User.where(:fb_id => fuser.id)
-        @fuser.polls << @poll
-      end
 
       if (options)
         options.each do |option|
