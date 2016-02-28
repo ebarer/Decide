@@ -3,8 +3,8 @@ class CreatePollOptions < ActiveRecord::Migration
     create_table :poll_options do |t|
       t.references :poll
       t.references :option
-      t.boolean "winning_poll" :default => falses
-      t.integer "votes" :default => 0
+      t.boolean "winning_poll", :default => false
+      t.integer "votes", :default => 0
       t.string "user_ids"
 
       t.timestamps null: false
