@@ -12,10 +12,10 @@ class LoginController < ApplicationController
             options << @option
         end
 
-        render :json => {:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :fb_id => @user.fb_id, :profile_picture => @user.profile_picture,
+        render :json => {:id => @user.id, :first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :fb_id => @user.fb_id, :profile_picture => @user.profile_picture,
           :polls => @user.polls, :options => options}
       else
-        render :json => '{"Status" : "-1", "Error_msg" : "User does not exist"}'
+        render :json => '{"status" : "-1", "Error_msg" : "User does not exist"}'
       end
   end
 
@@ -23,10 +23,10 @@ class LoginController < ApplicationController
     if !User.exists?(fb_id: params[:fb_id])
       @user = User.new(params.permit(:first_name, :last_name, :email, :fb_id, :profile_picture))
       @user.save
-      render :json => {:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :fb_id => @user.fb_id, :profile_picture => @user.profile_picture,
+      render :json => {:id => @user.id,:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email, :fb_id => @user.fb_id, :profile_picture => @user.profile_picture,
           :polls => @user.polls}
     else
-      render :json => '{"Status" : "101", "Error_msg" : "User already exists"}'
+      render :json => '{"status" : "101", "Error_msg" : "User already exists"}'
     end
   end
 end
