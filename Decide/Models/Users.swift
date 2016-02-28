@@ -13,11 +13,11 @@ class User: NSObject {
     var pk_uid: Int?
     var firstName: String
     var lastName: String
-    var email: String
+    var email: String?
     var fb_id: String
     var profilePicture: NSURL?
     
-    init(withFirstName firstName: String, lastName: String, email: String, fb_id: String) {
+    init(withFirstName firstName: String, lastName: String, email: String?, fb_id: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
@@ -49,7 +49,12 @@ class User: NSObject {
     }
     
     func toDict() -> [String: String] {
-        return ["first_name": firstName, "last_name": lastName, "email": email, "fb_id": String(fb_id)]
+        var dict = ["first_name": firstName, "last_name": lastName, "fb_id": fb_id]
+        if let email = email {
+            dict["email"] = email
+        }
+        
+        return dict
     }
     
     func getFriends() -> [User]? {
@@ -58,3 +63,8 @@ class User: NSObject {
     
 }
 
+class Elliot: User {
+    override func saveUser() -> Bool {
+        return false
+    }
+}

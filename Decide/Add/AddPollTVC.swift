@@ -51,8 +51,12 @@ class AddPollTVC: UITableViewController, UITextFieldDelegate {
     // MARK: - Text Field Methods
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        pollTitleTextField.resignFirstResponder()
-        return true
+        if !newPoll.title.isEmpty {
+            performSegueWithIdentifier("addOptions", sender: nil)
+            return true
+        }
+        
+        return false
     }
     
     

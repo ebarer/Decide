@@ -265,7 +265,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendCell" textLabel="I2I-5H-qDA" rowHeight="60" style="IBUITableViewCellStyleDefault" id="X2Y-lv-TFQ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCell" textLabel="I2I-5H-qDA" rowHeight="60" style="IBUITableViewCellStyleDefault" id="X2Y-lv-TFQ">
                                 <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="X2Y-lv-TFQ" id="Qnd-Vy-ycs">
@@ -291,8 +291,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Invite Friends" id="cqz-SP-5Qf">
                         <barButtonItem key="backBarButtonItem" title="Back" id="MRi-DR-SJ8"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="btB-Fg-yKQ"/>
+                        <barButtonItem key="rightBarButtonItem" title="Invite" style="done" id="btB-Fg-yKQ">
+                            <connections>
+                                <action selector="createPoll:" destination="IZ3-op-Fbs" id="aXX-Mf-7Gs"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="inviteButton" destination="btB-Fg-yKQ" id="eOy-dP-hab"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvs-H4-y3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
