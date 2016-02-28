@@ -2,49 +2,25 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DC0-X1-T7m">
     <dependencies>
         <deployment identifier="iOS"/>
-<<<<<<< e036306dc94834bb6d712b13fd494090c690943b
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-=======
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
->>>>>>> - Continued work across all files
     </dependencies>
     <scenes>
         <!--Decisions-->
         <scene sceneID="b1K-mn-fOg">
             <objects>
-                <tableViewController id="6IF-3H-2q6" customClass="MainPollsTVC" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="6IF-3H-2q6" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="dxh-Eu-NKu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pollCell" textLabel="yTz-vU-78I" detailTextLabel="X7h-oP-sqh" style="IBUITableViewCellStyleSubtitle" id="z8T-48-l6y">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pendingCell" id="z8T-48-l6y">
                                 <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z8T-48-l6y" id="dfu-4p-4TI">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yTz-vU-78I">
-                                            <rect key="frame" x="15" y="30" width="39" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X7h-oP-sqh">
-                                            <rect key="frame" x="15" y="54" width="37.5" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="cd6-fb-Gf1" kind="show" identifier="viewPollDetails" id="kYO-HV-xF7"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -70,7 +46,7 @@
                 <viewControllerPlaceholder storyboardName="AddPoll" id="OSF-gg-cwe" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0HH-tA-YoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3589.5" y="-271"/>
+            <point key="canvasLocation" x="3650.5" y="251"/>
         </scene>
         <!--MainTBC-->
         <scene sceneID="MIz-Xn-7tw">
@@ -186,73 +162,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pF1-eP-UGV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="769" y="579"/>
-        </scene>
-        <!--Poll Details-->
-        <scene sceneID="Z9e-TI-3oy">
-            <objects>
-                <tableViewController id="cd6-fb-Gf1" customClass="PollDetailsTVC" customModule="Decide_With_Friends" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="3dZ-64-zyA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="60" id="Pp9-jG-vxl" customClass="AddPollTVC_Options_AddCell" customModule="Decide_With_Friends" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="Pp9-jG-vxl" id="dcl-QI-Q0f">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7lb-Xa-swY">
-                                            <rect key="frame" x="15" y="18" width="570" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="cd6-fb-Gf1" id="uQa-s2-Epa"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="7lb-Xa-swY" firstAttribute="centerY" secondItem="dcl-QI-Q0f" secondAttribute="centerY" id="0VY-ni-Upq"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="7lb-Xa-swY" secondAttribute="trailing" id="kG4-8k-tIv"/>
-                                        <constraint firstItem="7lb-Xa-swY" firstAttribute="leading" secondItem="dcl-QI-Q0f" secondAttribute="leadingMargin" id="oNz-6M-qDX"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="addOptionTextField" destination="7lb-Xa-swY" id="AoN-o3-TDf"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="optionCell" textLabel="kaq-SF-ZO4" style="IBUITableViewCellStyleDefault" id="3ye-fy-C60">
-                                <rect key="frame" x="0.0" y="173.5" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="3ye-fy-C60" id="r1Q-fy-9Fi">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kaq-SF-ZO4">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="cd6-fb-Gf1" id="HaN-Zx-dyh"/>
-                            <outlet property="delegate" destination="cd6-fb-Gf1" id="ZFx-rL-4d0"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Poll Details" id="IPF-D2-GAf">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="Ayy-J3-umI"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="USL-z9-1J9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3869" y="251"/>
         </scene>
     </scenes>
 </document>

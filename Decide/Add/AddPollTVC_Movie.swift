@@ -29,7 +29,7 @@ class AddPollTVC_Movie: UITableViewController, UITextFieldDelegate, CLLocationMa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if newPoll.title.isEmpty {
+        if newPoll.title!.isEmpty {
             nextButton.enabled = false
         }
         locationManager = CLLocationManager()
@@ -77,7 +77,7 @@ class AddPollTVC_Movie: UITableViewController, UITextFieldDelegate, CLLocationMa
     // MARK: - Navigation
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        return (newPoll.title.isEmpty) ? false: true
+        return (newPoll.title!.isEmpty) ? false: true
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
