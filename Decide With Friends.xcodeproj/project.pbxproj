@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0469221C828DC4004BC11F /* LoginManager.swift */; };
+		CE0C1DBB1C82AFFF007468EC /* DatabaseTransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */; };
 		CEB049A31C82887400AD0D55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB049A21C82887400AD0D55 /* AppDelegate.swift */; };
 		CEB049AA1C82887400AD0D55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB049A91C82887400AD0D55 /* Assets.xcassets */; };
 		CEB049AD1C82887400AD0D55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB049AB1C82887400AD0D55 /* LaunchScreen.storyboard */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE0469221C828DC4004BC11F /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginManager.swift; path = Login/LoginManager.swift; sourceTree = "<group>"; };
+		CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseTransportManager.swift; path = Models/DatabaseTransportManager.swift; sourceTree = "<group>"; };
 		CEB0499F1C82887400AD0D55 /* Decide With Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Decide With Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB049A21C82887400AD0D55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB049A91C82887400AD0D55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 		CEB049B51C8288A100AD0D55 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				CE0469221C828DC4004BC11F /* LoginManager.swift */,
 				CEB049C81C82894600AD0D55 /* LoginTVC.swift */,
 			);
 			name = Login;
@@ -105,6 +110,7 @@
 		CEB049C41C8288FD00AD0D55 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE0C1DBA1C82AFFF007468EC /* DatabaseTransportManager.swift */,
 				CEB049BB1C8288ED00AD0D55 /* Users.swift */,
 				CEB049BA1C8288ED00AD0D55 /* Poll.swift */,
 				CEB049B91C8288ED00AD0D55 /* Option.swift */,
@@ -165,6 +171,7 @@
 				TargetAttributes = {
 					CEB0499E1C82887400AD0D55 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 5ZJB9DN7AQ;
 					};
 				};
 			};
@@ -205,11 +212,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB049BF1C8288ED00AD0D55 /* Users.swift in Sources */,
+				CE0469231C828DC4004BC11F /* LoginManager.swift in Sources */,
 				CEB049C91C82894600AD0D55 /* LoginTVC.swift in Sources */,
 				CEB049C31C8288F700AD0D55 /* OptionRestaurant.swift in Sources */,
 				CEB049BD1C8288ED00AD0D55 /* Option.swift in Sources */,
 				CEB049BE1C8288ED00AD0D55 /* Poll.swift in Sources */,
 				CEB049C21C8288F700AD0D55 /* OptionMovie.swift in Sources */,
+				CE0C1DBB1C82AFFF007468EC /* DatabaseTransportManager.swift in Sources */,
 				CEB049A31C82887400AD0D55 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,14 +332,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Decide/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Decide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ebarer.Decide;
 				PRODUCT_NAME = "Decide With Friends";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Decide/Frameworks/DWF-Bridging-Header.h";
 			};
 			name = Debug;
@@ -339,14 +352,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Decide/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Decide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ebarer.Decide;
 				PRODUCT_NAME = "Decide With Friends";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Decide/Frameworks/DWF-Bridging-Header.h";
 			};
 			name = Release;
@@ -370,6 +387,7 @@
 				CEB049B31C82887400AD0D55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

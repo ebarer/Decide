@@ -9,18 +9,46 @@
 import UIKit
 
 class User:NSObject {
-    let pk_uid: Int
+    var pk_uid: Int?
     var firstName: String
     var lastName: String
     var email: String
-    var fb_id: Int?
+    var fb_id: Double
     var profilePicture: NSURL?
     
-    init(withUID uid: Int, firstName: String, lastName: String, email: String) {
-        self.pk_uid = uid
+    init(withFirstName firstName: String, lastName: String, email: String, fb_id: Double) {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
+        self.fb_id = fb_id
+    }
+    
+    func saveUser() -> Bool {
+        let manager = DatabaseTransportManager()
+        let object = self.toDict()
+        
+        let request = manager.postRequest(withParams: object, urlString: "https://boiling-caverns-94333.herokuapp.com/login/create")
+        if request.success {
+            self.pk_uid = request.response?.valueForKey("pk_uid") as? Int
+            defaults.setValue(self.pk_uid, forKey: "pk_uid")
+            defaults.synchronize()
+            return true
+        }
+    
+        return false
+    }
+    
+    class func getUser(pk_uid: Int) -> User {
+        // Send to backend UID
+        
+        // Backend sends JSON
+        
+        // Create User
+        return User(withFirstName: "Elliot", lastName: "Barer", email: "ebarer@mac.com", fb_id: 1001)
+    }
+    
+    func toDict() -> [String: String] {
+        return ["first_name": firstName, "last_name": lastName, "email": email, "fb_id": String(fb_id)]
     }
     
     func getFriends() -> [User]? {
