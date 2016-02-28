@@ -53,8 +53,6 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
         } catch _ {
             html = nil
         }
-        //print(html)
-        //print("http://www.google.com/movies?lat=" + String(lat) + "&long=" + String(long))
         
         // NOW PARSE IT
         var html_parse = html!.componentsSeparatedByString("<div class=theater>")
@@ -63,9 +61,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
             if theater.rangeOfString("<span class=closure>") != nil {
                 // theater hase no showtimes. remove from array
                 html_parse.removeObject(theater)
-            }
-            else{//theater has showtimes. Add to Array of movie objects
-                
+            } else {//theater has showtimes. Add to Array of movie objects
                 // Retrieve Theater Name
                 var theatername = (theater.componentsSeparatedByString("<h2 class=name>")[1]).componentsSeparatedByString("</h2>")[0]
                 theatername = (theatername.componentsSeparatedByString(">")[1]).componentsSeparatedByString("</a")[0]
@@ -99,9 +95,17 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
                         var rated : String
                         if info.rangeOfString("Rated") != nil{
                             rated = (info.componentsSeparatedByString("Rated ")[1]).componentsSeparatedByString(" -")[0]
+                        } else {
+                            rated = ""
+                        }
+                        var trailer : String
+                        if movie.rangeOfString("youtube") != nil{
+                            // get trailer URL
+                            trailer = (movie.componentsSeparatedByString("<a href=\"/url?q=")[1]).componentsSeparatedByString("\" class=fl>Trailer")[0]
+                            trailer = "http://www.google.com/url?q=" + trailer
                         }
                         else{
-                            rated = ""
+                            trailer = ""
                         }
                         var times = (movie.componentsSeparatedByString("<div class=times>")[1]).componentsSeparatedByString("-->")
                         times.removeAtIndex(0)
@@ -110,7 +114,7 @@ class AddPollTVC_Options_Movie: UITableViewController, UITextFieldDelegate {
                             timearray.append(time.componentsSeparatedByString("</span>")[0])
                         }
                             
-                        newPoll.movieOptions.append(Movie(title: title, imdbRating: 0.0, length: length, genre: "", locationsAndTimes: [(theatername, timearray)], plot: "", poster: "", movieRating: rated))
+                        newPoll.movieOptions.append(Movie(title: title, imdbRating: 0.0, length: length, genre: "", locationsAndTimes: [(theatername, timearray)], plot: "", poster: "", movieRating: rated, trailer: trailer))
                         newPoll.movieOptions.last?.getMovieInfo()
                         
                     }

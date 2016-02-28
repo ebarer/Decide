@@ -19,9 +19,10 @@ class Movie: Option {
     var plot: String?
     var poster: String?
     var movieRating: String?
+    var trailer: String?
 
     convenience init(title: String, imdbRating: Float, length: String, genre: String,
-        locationsAndTimes: [(theater:String,times:[String])], plot: String, poster: String, movieRating: String) {
+        locationsAndTimes: [(theater:String,times:[String])], plot: String, poster: String, movieRating: String, trailer: String) {
         self.init(title: title)
         
         self.imdbRating = imdbRating
@@ -32,6 +33,7 @@ class Movie: Option {
         self.plot = plot
         self.poster = poster
         self.movieRating = movieRating
+        self.trailer = trailer
     }
     
 //    func scrapeMoviesNearMe() {
